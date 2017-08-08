@@ -1,13 +1,12 @@
 # Project Name
 
-> Pithy project description
+> Find concerts near user and generate a "preview" playlist.
 
-## Team
+## Center for Kids Who Can't Code Good and Wanna Learn to Build Apps Good Too
 
-  - teamMember
-  - teamMember
-  - teamMember
-  - teamMember
+  - Tyler Carson
+  - Karun Pavithran
+  - Ting Wang
 
 ## Table of Contents
 
@@ -21,14 +20,15 @@
 
 ## Usage
 
-> Some usage instructions
+> Apply filters or click where you are to generate a list of concerts in your immediate area
+> Check out that playlist!!
 
 ## Requirements
 
 - Node 6.4.x
 - Redis 2.6.x
 - Postgresql 9.1.x
-- etc
+- Sequelize
 - etc
 
 ## Development
