@@ -29,7 +29,12 @@
 - Redis 2.6.x
 - Postgresql 9.1.x
 - Sequelize
-- etc
+- Axios 0.16.x
+- React 15.6.x
+- Webpack 3.4.x
+- ReactDOM 15.6.x
+- Nodemon 1.11.0
+- JQuery 3.1.x
 
 ## Development
 
@@ -38,9 +43,7 @@
 From within the root directory:
 
 ```sh
-npm install -g bower
 npm install
-bower install
 ```
 
 ### Roadmap
