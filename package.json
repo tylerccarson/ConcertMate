@@ -1,0 +1,47 @@
+{
+  "name": "ConcertMate",
+  "version": "1.0.0",
+  "description": "Find concerts near user and generate a 'preview' playlist.",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.9.2",
+    "express": "^4.10.1",
+    "morgan": "^1.4.1",
+    "mysql": "^2.4.2",
+    "sequelize": "^3.21.0",
+    "axios": "^0.16.2",
+    "react": "^15.6.1",
+    "webpack": "^3.4.1",
+    "react-dom": "^15.6.1",
+    "nodemon": "^1.11.0",
+    "jquery": "^3.1.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-cli": "^6.7.5",
+    "babel-loader": "^6.3.2",
+    "babel-register": "^6.7.2",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+  },
+  "scripts": {
+    "dev": "webpack -d --watch",
+    "start": "nodemon server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "babel": {
+    "presets": [
+      "es2015", "react"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Greenfield-CfKWCCGaWLtBAGT/hrsf79-greenfield.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Greenfield-CfKWCCGaWLtBAGT/hrsf79-greenfield/issues"
+  },
+  "homepage": "https://github.com/Greenfield-CfKWCCGaWLtBAGT/hrsf79-greenfield#readme"
+}
