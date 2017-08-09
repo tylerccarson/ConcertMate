@@ -29,5 +29,4 @@ node_modules/
 bower_components/
 
 #config files
-./server/config.js
 ./database/config.js
