@@ -1,5 +1,5 @@
-let loginData = {
-  user: 'tingtingwang',
+const loginData = {
+  user: 'twang1225',
   password: 'trojans2014'
 }
 

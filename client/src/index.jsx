@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Map from './components/Map.jsx';
+import Filters from './components/Filters.jsx';
+import Playlist from './components/Playlist.jsx';
+import Concerts from './components/Concerts.jsx';
+// import { Grid, Row, Col } from 'react-bootstrap';
 
 class App extends React.Component {
   constructor(props) {
@@ -9,10 +13,17 @@ class App extends React.Component {
       venues: []
     };
   }
-  
+
   render() {
     return (
-      <Map />
+      <div>
+        <h1>ConcertMate</h1>
+        <Filters />
+        <Map />
+        <Playlist />
+        <Concerts />
+      </div>
+
     )
   }
 }

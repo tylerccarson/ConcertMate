@@ -1,7 +1,7 @@
 import React from 'react';
-import {GoogleMap, GoogleMapMarkers} from 'google-map-react'; 
+import GoogleMapReact from 'google-map-react';
 
-export default class Map extends React.Component {
+class Map extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,13 +9,15 @@ export default class Map extends React.Component {
       zoom: 8
     }
   }
-  
+
   render() {
     return (
-      <GoogleMap
+      <GoogleMapReact
         defaultCenter={this.state.center}
         defaultZoom={this.state.zoom}
       />
       )
   }
 }
+
+export default Map;
