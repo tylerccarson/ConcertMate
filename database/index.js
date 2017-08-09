@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const seq = new Sequelize('GreenfieldDB', 'student', 'student', {
+const seq = new Sequelize('GreenfieldDB', 'root', 'peligro', {
   host: 'localhost',
   dialect: 'mysql'
 });
