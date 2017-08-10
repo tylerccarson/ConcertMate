@@ -1,6 +1,6 @@
 module.exports.parseTracks = function(trackList) {
 	let parsedList = {
-		uris: [];
+		uris: []
 	}
 
 	//do some things
