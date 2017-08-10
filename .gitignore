@@ -1,5 +1,6 @@
 ### node etc ###
 
+bundle.js
 # Logs
 logs
 *.log
