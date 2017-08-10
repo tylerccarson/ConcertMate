@@ -1,4 +1,5 @@
 import React from 'react';
+
 import GoogleMapReact from 'google-map-react';
 
 const style = {
@@ -11,6 +12,7 @@ const style = {
   overflow: 'visible',
   padding: 0
 }
+
 class Map extends React.Component {
   constructor(props) {
     super(props);

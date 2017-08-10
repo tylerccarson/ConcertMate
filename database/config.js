@@ -1,6 +1,6 @@
 const loginData = {
-  user: 'twang1225',
-  password: 'trojans2014'
+  user: 'root',
+  password: 'peligro'
 }
 
 module.exports.loginData = loginData;
