@@ -18,7 +18,8 @@ class Playlist extends React.Component {
 	}
 
 	componentWillMount() {
-		//get userID
+		// getting error due to unauthorization. Need to incorporate client secret ID and refresh token capability.
+		// guide here: https://developer.spotify.com/web-api/authorization-guide/
 		axios({
 			url: 'https://api.spotify.com/v1/me',
 			method: 'get',
@@ -26,7 +27,7 @@ class Playlist extends React.Component {
 		})
 		//create playlist
 		.then((userId) => {
-
+			console.log('got userId: ', userId);
 			this.setState({
 				userId: userId
 			});
