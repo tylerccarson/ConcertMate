@@ -47,7 +47,7 @@ class Playlist extends React.Component {
 
 			console.log('Playlist created', playlist);
 		})
-		}
+		});
 	}
 
 	handleArtistEntry(artistEntryEvent) {
