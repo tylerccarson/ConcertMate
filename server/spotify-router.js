@@ -2,6 +2,11 @@ let router = require('express').Router();
 let axios = require('axios');
 let bodyParser = require('body-parser');
 let helpers = require('./spotify-helpers.js');
+let querystring = require('querystring');
+let cookieParser = require('cookie-parser');
+let request = require('request');
+let SpotifyWebApi = require('spotify-web-api-node');
+
 
 let SpotifyWebApi = require('spotify-web-api-node');
 
