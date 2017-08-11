@@ -4,6 +4,7 @@ import Map from './components/Map.jsx';
 import Filters from './components/Filters.jsx';
 import Playlist from './components/Playlist.jsx';
 import Concerts from './components/Concerts.jsx';
+import axios from 'axios';
 // import { Grid, Row, Col } from 'react-bootstrap';
 
 class App extends React.Component {
@@ -13,7 +14,10 @@ class App extends React.Component {
       venues: []
     };
   }
-
+  
+  componentWillMount() {
+    axios.get('/songkick/');
+  }
   render() {
     return (
       <div>
