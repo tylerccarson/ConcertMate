@@ -1,6 +1,6 @@
 let loginData = {
-  user: 'root',
-  password: 'peligro'
+  user: 'student',
+  password: 'student'
 }
 
 module.exports.loginData = loginData;
