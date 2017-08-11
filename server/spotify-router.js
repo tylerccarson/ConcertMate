@@ -2,11 +2,8 @@ let router = require('express').Router();
 let axios = require('axios');
 let bodyParser = require('body-parser');
 let helpers = require('./spotify-helpers.js');
-let querystring = require('querystring');
-let cookieParser = require('cookie-parser');
-let request = require('request');
-let SpotifyWebApi = require('spotify-web-api-node');
 
+let SpotifyWebApi = require('spotify-web-api-node');
 
 let spotifyCredentials = {
 	client_id: '1b4dd6acf0c14120b5fa6ae37b4c773a',
@@ -18,7 +15,7 @@ let accessToken = 'BQCMwC19LrnRoyhPTiUbi5gFdrFM584B5xcLvVgZrcrlf3cFYEIyxVsVYvpme
 
 let spotifyHeaders = {
 	'Authorization': 'Bearer ' + accessToken,
-	'Access-Control-Allow-Origin': '*',
+	'Access-Control-Allow-Origin': true,
 	'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
 	'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
 };
@@ -34,10 +31,10 @@ spotifyApi.setAccessToken(accessToken);
 let state = 13131313131300;
 let scopes = ['user-read-private', 'user-read-email'];
 
-router.options('/*', (req, res) => {
-	console.log('handling options request');
-	res.header(spotifyHeaders).send(200);
-})
+// router.options('/*', (req, res) => {
+// 	console.log('handling options request');
+// 	res.header(spotifyHeaders).send(200);
+// })
 
 router.get('/login', (req, res) => {
 	console.log('login: ', req.body);
