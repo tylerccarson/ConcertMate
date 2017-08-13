@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
 let axios = require('axios');
-let apiKey = require()
+//let apiKey = require()
 let url  = `http://api.songkick.com/api/3.0/events.json?apikey=&location=geo:37.783607,-122.408967`
 let bodyParser = require('body-parser');
 
