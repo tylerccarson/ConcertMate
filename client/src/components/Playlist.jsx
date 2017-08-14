@@ -13,13 +13,15 @@ class Playlist extends React.Component {
 
 	componentWillMount() {
 		//direct to login
-		// axios.get('/spotify/login')
-		// 	.then((response) => {
-		// 		console.log(response);
-		// 	})
-		// 	.catch((error) => {
-		// 		console.log(error);
-		// 	})
+		axios.get('/spotify/login')
+			.then((response) => {
+				console.log(response.data);
+				let loginUrl = response.data;
+				//window.location = loginUrl;
+			})
+			.catch((error) => {
+				console.log(error);
+			})
 	}
 
 	handleArtistEntry(artistEntryEvent) {
