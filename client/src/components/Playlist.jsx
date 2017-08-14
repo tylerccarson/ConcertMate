@@ -10,7 +10,10 @@ let spotifyCredentials = {
 let accessToken = 'BQCMwC19LrnRoyhPTiUbi5gFdrFM584B5xcLvVgZrcrlf3cFYEIyxVsVYvpmeK2qCscz9iiBtk_qjm8aKh6a-Q3qyg63LUU0sABKLXswc68Lu9AimAkvu58EEdm53eQrjrvzPI3a0Nxgviuam89CajzKU5Z7emO2NiRI1WH_XG0MIIaT72JUci7mdU6BPsggJ5SbpWwkmgCVbbvtcyR4yIK2gBDH1oZAdYrWPMXaf6QoN_O_V4MhA79thd1Ye1633YvspMzJ7iW6wm5AHj8';
 
 let spotifyHeaders = {
-	'Authorization': 'Bearer ' + accessToken
+	'Authorization': 'Bearer ' + accessToken,
+	'Access-Control-Allow-Origin': '*',
+	'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+	'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
 };	
 
 class Playlist extends React.Component {
@@ -24,19 +27,29 @@ class Playlist extends React.Component {
 	}
 
 	componentWillMount() {
-		// getting error due to unauthorization. Need to incorporate client secret ID and refresh token capability.
-		// guide here: https://developer.spotify.com/web-api/authorization-guide/
+		//these two steps may be unnecessary for time being
+			// 4. request refresh and access tokens
+			// 5. tokens returned to app
+			// 6 and 7: do work
+		
 		// 1. get request for authorization
-		// 2. do so with authorized scopes
+		axios.get('https://accounts.spotify.com/authorize', {
+			headers: spotifyHeaders,
+			params: {
+				// 2. do so with authorized scopes
+				client_id: spotifyCredentials.client_id,
+				response_type: 'code',
+				redirect_uri: spotifyCredentials.redirect_URIs[1]
+			}
+		})
 		// 3. user redirected back to redirect URI
 			//  how to deal with redirect? perhaps build route outside of component will mount. This should only be for 1st step
-
-			//these two steps may be unnecessary for time being
-		// 4. request refresh and access tokens
-		// 5. tokens returned to app
-		// 6 and 7: do work
-		
-		
+		.then((response) => {
+			console.log('code for access token: ', response.code);
+		})
+		.catch((error) => {
+			console.log('authorization error: ', error);
+		});
 
 
 		//// this promise chain will fetch the user id, create a playlist, then set the state for those two props
