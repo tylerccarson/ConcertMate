@@ -48,21 +48,20 @@ router.post('/search', bodyParser.json(), (req, res) => {
 	let artist = encodeURI(req.body.artist);
 	let token = req.body.token;
 	//why isn't header saved?
-	axios.get(`https://api.spotify.com/v1/search?q=${artist}&type=playlist&market=US&limit=10`, {
+	axios.get(`https://api.spotify.com/v1/search?q=${artist}&type=artist&market=US&limit=10`, {
 			headers: {
 				'Authorization': 'Bearer ' + token
 			}		
 		})
 	//might need to get the userID as well....
-	.then((playlists) => {
-		console.log('1st playlist: ', playlists.data.playlists.items[0]);
-		let userId = playlists.data.playlists.items[0].owner.id;
-		let playlistId = playlists.data.playlists.items[0].id;
-		let playlistData = {
-			userId: userId,
-			playlistId: playlistId
+	.then((artists) => {
+		console.log(artists);
+		console.log('1st artist: ', artists.data.artists.items[0]);
+		let artistId = artists.data.artists.items[0].id;
+		let artistData = {
+			artistId: artistId,
 		}
-		res.send(playlistData);
+		res.send(artistData);
 	})
 	.catch((error) => {
 		//console.log('Error getting API data: ', error);
