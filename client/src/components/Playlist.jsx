@@ -15,7 +15,6 @@ class Playlist extends React.Component {
 		if (window.location.hash) {
 			let hash = window.location.hash;
 			let token = hash.split('&')[0].split('=')[1];
-			console.log('token: ', token);
 			this.setState({
 				token: token
 			})
@@ -71,10 +70,6 @@ class Playlist extends React.Component {
 	render() {
 	  return (
 	  	<div>
-	  		<div className="container">
-			    <p>Log in with your Spotify account:</p>
-			    <button className="btn btn-primary" id="btn-login">Login</button>
-				</div>
 		    <div>
 		    	<form action='/' method='post' onSubmit={this.handleFormSubmit.bind(this)}>
 		    		<label>
@@ -92,10 +87,6 @@ class Playlist extends React.Component {
 	  )		
 	}
 }
-/* 
-<iframe src={'https://open.spotify.com/embed?uri=spotify:user:' + this.state.userId + ':playlist:' + this.state.playlistId + '&theme=black'}
-  					width="320" height="120"
-  					frameBorder="0" allowTransparency="true"></iframe>
-*/
+
 
 export default Playlist;
