@@ -2,12 +2,6 @@ let router = require('express').Router();
 let axios = require('axios');
 let bodyParser = require('body-parser');
 let helpers = require('./spotify-helpers.js');
-let querystring = require('querystring');
-let cookieParser = require('cookie-parser');
-let request = require('request');
-let SpotifyWebApi = require('spotify-web-api-node');
-
-
 let SpotifyWebApi = require('spotify-web-api-node');
 
 let spotifyCredentials = {
@@ -16,13 +10,11 @@ let spotifyCredentials = {
 	redirect_uri: 'http://localhost:8888/spotify/callback/'
 };
 
-let accessToken = 'BQCMwC19LrnRoyhPTiUbi5gFdrFM584B5xcLvVgZrcrlf3cFYEIyxVsVYvpmeK2qCscz9iiBtk_qjm8aKh6a-Q3qyg63LUU0sABKLXswc68Lu9AimAkvu58EEdm53eQrjrvzPI3a0Nxgviuam89CajzKU5Z7emO2NiRI1WH_XG0MIIaT72JUci7mdU6BPsggJ5SbpWwkmgCVbbvtcyR4yIK2gBDH1oZAdYrWPMXaf6QoN_O_V4MhA79thd1Ye1633YvspMzJ7iW6wm5AHj8';
+let accessToken = 'BQAnLXpx66YRPtPjKUKXsqZ8VaT6iBIAfD7CpxDVI7Z5dTrWwSEq2S-59HgTB7NGbm-N_w_-MkpJ-B04S0Msph2OpSYDmA_ZO-Izp5iGlj7QvskY9wBksnCzOKN1kuqYaLrwdKuWCKlba3m7hLRINhz1hRgTR3aPr6ZDXosJu1xostwbi3NtXRF_2zbhTzUX493r5ltcROhahqAXlpcGVZhl4rcD2RVLHqIgmxV2eJNyxbnCgrDvkRHQDNHzlegxX8yqU6w9tltSuW_GB6M';
 
 let spotifyHeaders = {
 	'Authorization': 'Bearer ' + accessToken,
-	'Access-Control-Allow-Origin': true,
-	'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-	'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
+	'Accept': 'application/json'
 };
 
 let spotifyApi = new SpotifyWebApi({
@@ -36,11 +28,7 @@ spotifyApi.setAccessToken(accessToken);
 let state = 13131313131300;
 let scopes = ['user-read-private', 'user-read-email'];
 
-// router.options('/*', (req, res) => {
-// 	console.log('handling options request');
-// 	res.header(spotifyHeaders).send(200);
-// })
-
+//start authentication flow
 router.get('/login', (req, res) => {
 	console.log('login: ', req.body);
 	state++;
@@ -52,40 +40,48 @@ router.get('/callback', (req, res) => {
 	console.log('callback yo: ', req);
 })
 
+//handle playlist search submission
 router.post('/', bodyParser.json(), (req, res) => {
-
-	console.log(req.body);
 	let artist = req.body.artist;
-	let userId = req.body.userId;
-	let playlistId = req.body.playlistId;
 
 	axios({
-		url: `https://api.spotify.com/v1/search?q=${artist}`,
+		url: `https://api.spotify.com/v1/search?q=${artist}&type=playlist&market=US&limit=10`,
 		method: 'get',
 		headers: spotifyHeaders
 	})
-		.then((artistId) => {
-			//if they exist, get top tracks for that artist		
-			return axios({
-				url: `https://api.spotify.com/v1/artists/${artistId}/top-tracks?country=US`,
-				method: 'get',
-				headers: spotifyHeaders
-			})
-		.then((topTracks) => {
-			//need to parse topTracks into an array of trackURI's
-			let parsedTrackList = helpers.parseTracks(topTracks);
-			//replace playlist tracks with new top tracks
-			return axios({
-				url: `https://api.spotify.com/v1/users/${userId}/playlists/{playlistId}/tracks`,
-				method: 'put',
-				headers: spotifyHeaders,
-				data: parsedTrackList
-			})
-		.then((changed) => {
-			res.send('got artist post');
-			})
-		})
+	//maybe need to do a req, res, with chaining request? Look it up.
+	.then((playlists) => {
+		console.log('playlists: ', playlists.body);
+		res.status(200).send('daaaata')
 	})
+	.catch((error) => {
+		console.log('Error getting API data: ', error);
+		res.status(404).send('Error');
+	});
+
+
+	// 	.then((artistId) => {
+	// 		//if they exist, get top tracks for that artist		
+	// 		return axios({
+	// 			url: `https://api.spotify.com/v1/artists/${artistId}/top-tracks?country=US`,
+	// 			method: 'get',
+	// 			headers: spotifyHeaders
+	// 		})
+	// 	.then((topTracks) => {
+	// 		//need to parse topTracks into an array of trackURI's
+	// 		let parsedTrackList = helpers.parseTracks(topTracks);
+	// 		//replace playlist tracks with new top tracks
+	// 		return axios({
+	// 			url: `https://api.spotify.com/v1/users/${userId}/playlists/{playlistId}/tracks`,
+	// 			method: 'put',
+	// 			headers: spotifyHeaders,
+	// 			data: parsedTrackList
+	// 		})
+	// 	.then((changed) => {
+	// 		res.send('got artist post');
+	// 		})
+	// 	})
+	// })
 });
 
 //these two steps may be unnecessary for time being

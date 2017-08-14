@@ -16,14 +16,14 @@ class App extends React.Component {
   }
   
   componentWillMount() {
-    axios.get('/songkick/');
+    //axios.get('/songkick/');
   }
   render() {
     return (
       <div>
         <h1>ConcertMate</h1>
         <Filters />
-        <Map />
+        {/*<Map />*/}
         <Playlist />
         <Concerts />
       </div>
