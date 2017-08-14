@@ -4,7 +4,6 @@ let bodyParser = require('body-parser');
 let helpers = require('./spotify-helpers.js');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));
-//let SpotifyWebApi = require('spotify-web-api-node');
 
 let spotifyCredentials = {
 	client_id: '1b4dd6acf0c14120b5fa6ae37b4c773a',
