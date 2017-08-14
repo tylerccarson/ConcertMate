@@ -48,23 +48,25 @@ class Playlist extends React.Component {
 
 	handleFormSubmit(formSubmitEvent) {
 		formSubmitEvent.preventDefault();
-		let data = {
-			artist: this.state.artist,
-			token: this.state.token
-		};
-		axios.post('/spotify/search', data)
-			.then((res) => {
-				console.log(res.data);
-
-				this.setState({
-					artistId: res.data.artistId,
+		if (this.state.artist) {
+			let data = {
+				artist: this.state.artist,
+				token: this.state.token
+			};
+			axios.post('/spotify/search', data)
+				.then((res) => {
+					this.setState({
+						artistId: res.data.artistId,
+					});
+				})
+				.catch((err) => {
+					console.log(err);
 				});
-
-			})
-			.catch((err) => {
-				console.log(err);
+		} else {
+			this.setState({
+				artist: ''
 			});
-			console.log(this.state);
+		}
 	}
 
 	render() {
