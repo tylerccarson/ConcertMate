@@ -6,7 +6,7 @@ class Playlist extends React.Component {
 		super(props);
 		this.state = {
 			artist: '',
-			artistId: '776Uo845nYHJpNaStv1Ds4',
+			artistId: undefined,
 			token: undefined
 		}
 	}
@@ -68,6 +68,10 @@ class Playlist extends React.Component {
 	}
 
 	render() {
+		let iframeBaseURL = 'https://open.spotify.com/embed?uri=spotify:';
+		let iframeQuery = this.state.artistId ? 'artist:' + this.state.artistId + '&theme=black' : 'user:1211115253:playlist:6r1hzKf8a0KYkbt44we1Cl';
+		let iframeSRC = iframeBaseURL + iframeQuery;
+
 	  return (
 	  	<div>
 		    <div>
@@ -79,7 +83,7 @@ class Playlist extends React.Component {
 		    	</form>
 		    </div>
 		    <div>
-		    	<iframe src={'https://open.spotify.com/embed?uri=spotify:artist:' + this.state.artistId + '&theme=black'}
+		    	<iframe src={iframeSRC}
   					width="320" height="120"
   					frameBorder="0" allowTransparency="true"></iframe>
 		    </div>
