@@ -42,7 +42,7 @@ router.post('/login', (req, res) => {
 	res.status(200).send();
 })
 
-//handle playlist search submission
+//handle artist search submission
 router.post('/search', bodyParser.json(), (req, res) => {
 	let artist = encodeURI(req.body.artist);
 	let token = req.body.token;
