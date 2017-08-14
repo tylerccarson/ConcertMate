@@ -17,26 +17,22 @@ class Playlist extends React.Component {
 			let token = hash.split('&')[0].split('=')[1];
 			this.setState({
 				token: token
-			})
+			});
 			axios.post('/spotify/login', {
 					data: token
 			})
-			.then((response) => {
-					console.log(response);
-				})
-				.catch((error) => {
-					console.log(error);
-				})
+			.catch((error) => {
+				console.log(error);
+			});
 		} else {
 			axios.get('/spotify/login')
 				.then((response) => {
-					console.log(response.data);
 					let loginUrl = response.data;
 					window.location = loginUrl;
 				})
 				.catch((error) => {
 					console.log(error);
-				})
+				});
 		}
 	}
 
