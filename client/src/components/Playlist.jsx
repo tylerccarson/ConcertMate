@@ -6,8 +6,7 @@ class Playlist extends React.Component {
 		super(props);
 		this.state = {
 			artist: '',
-			userId: 1211115253,
-			playlistId: '2GKsWTId44AS4ZaeHKnowP',
+			artistId: '776Uo845nYHJpNaStv1Ds4',
 			token: undefined
 		}
 	}
@@ -59,8 +58,7 @@ class Playlist extends React.Component {
 				console.log(res.data);
 
 				this.setState({
-					userId: res.data.userId,
-					playlistId: res.data.playlistId
+					artistId: res.data.artistId,
 				});
 
 			})
@@ -86,7 +84,7 @@ class Playlist extends React.Component {
 		    	</form>
 		    </div>
 		    <div>
-		    	<iframe src={'https://open.spotify.com/embed?uri=spotify:user:' + this.state.userId + ':playlist:' + this.state.playlistId + '&theme=black'}
+		    	<iframe src={'https://open.spotify.com/embed?uri=spotify:artist:' + this.state.artistId + '&theme=black'}
   					width="320" height="120"
   					frameBorder="0" allowTransparency="true"></iframe>
 		    </div>
@@ -94,5 +92,10 @@ class Playlist extends React.Component {
 	  )		
 	}
 }
+/* 
+<iframe src={'https://open.spotify.com/embed?uri=spotify:user:' + this.state.userId + ':playlist:' + this.state.playlistId + '&theme=black'}
+  					width="320" height="120"
+  					frameBorder="0" allowTransparency="true"></iframe>
+*/
 
 export default Playlist;
