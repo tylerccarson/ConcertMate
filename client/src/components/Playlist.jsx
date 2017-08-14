@@ -6,20 +6,20 @@ class Playlist extends React.Component {
 		super(props);
 		this.state = {
 			artist: '',
-			userId: null,
-			playlistId: null
+			userId: 1211115253,
+			playlistId: '2GKsWTId44AS4ZaeHKnowP'
 		}
 	}
 
 	componentWillMount() {
 		//direct to login
-		axios.get('/spotify/login')
-			.then((response) => {
-				console.log(response);
-			})
-			.catch((error) => {
-				console.log(error);
-			})
+		// axios.get('/spotify/login')
+		// 	.then((response) => {
+		// 		console.log(response);
+		// 	})
+		// 	.catch((error) => {
+		// 		console.log(error);
+		// 	})
 	}
 
 	handleArtistEntry(artistEntryEvent) {
@@ -45,6 +45,10 @@ class Playlist extends React.Component {
 	render() {
 	  return (
 	  	<div>
+	  		<div className="container">
+			    <p>Log in with your Spotify account:</p>
+			    <button className="btn btn-primary" id="btn-login">Login</button>
+				</div>
 		    <div>
 		    	<form action='/' method='post' onSubmit={this.handleFormSubmit.bind(this)}>
 		    		<label>
@@ -54,8 +58,8 @@ class Playlist extends React.Component {
 		    	</form>
 		    </div>
 		    <div>
-		    	<iframe src='https://open.spotify.com/embed?uri=spotify:user:1211115253:playlist:2GKsWTId44AS4ZaeHKnowP&theme=black'
-  					width="400" height="120"
+		    	<iframe src={'https://open.spotify.com/embed?uri=spotify:user:' + this.state.userId + ':playlist:' + this.state.playlistId + '&theme=black'}
+  					width="320" height="120"
   					frameBorder="0" allowTransparency="true"></iframe>
 		    </div>
 	    </div>
