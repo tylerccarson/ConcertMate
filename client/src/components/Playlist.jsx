@@ -7,21 +7,39 @@ class Playlist extends React.Component {
 		this.state = {
 			artist: '',
 			userId: 1211115253,
-			playlistId: '2GKsWTId44AS4ZaeHKnowP'
+			playlistId: '2GKsWTId44AS4ZaeHKnowP',
+			token: undefined
 		}
 	}
 
 	componentWillMount() {
-		//direct to login
-		axios.get('/spotify/login')
+		if (window.location.hash) {
+			let hash = window.location.hash;
+			let token = hash.split('&')[0].split('=')[1];
+			console.log('token: ', token);
+			this.setState({
+				token: token
+			})
+			axios.post('/spotify/login', {
+					data: token
+			})
 			.then((response) => {
-				console.log(response.data);
-				let loginUrl = response.data;
-				//window.location = loginUrl;
-			})
-			.catch((error) => {
-				console.log(error);
-			})
+					console.log(response);
+				})
+				.catch((error) => {
+					console.log(error);
+				})
+		} else {
+			axios.get('/spotify/login')
+				.then((response) => {
+					console.log(response.data);
+					let loginUrl = response.data;
+					window.location = loginUrl;
+				})
+				.catch((error) => {
+					console.log(error);
+				})
+		}
 	}
 
 	handleArtistEntry(artistEntryEvent) {
@@ -33,15 +51,23 @@ class Playlist extends React.Component {
 	handleFormSubmit(formSubmitEvent) {
 		formSubmitEvent.preventDefault();
 		let data = {
-			artist: this.state.artist
+			artist: this.state.artist,
+			token: this.state.token
 		};
-		axios.post('/spotify', data)
+		axios.post('/spotify/search', data)
 			.then((res) => {
-				console.log(res);
+				console.log(res.data);
+
+				this.setState({
+					userId: res.data.userId,
+					playlistId: res.data.playlistId
+				});
+
 			})
 			.catch((err) => {
 				console.log(err);
 			});
+			console.log(this.state);
 	}
 
 	render() {
