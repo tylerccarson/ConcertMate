@@ -24,11 +24,21 @@ describe('Spotify API', () => {
 				.post('/spotify/search')
 				.send(data)
 				.end((err, res) => {
-					console.log(res);
 					res.should.have.status(200);
 					res.body.should.be.a('object');
 					res.body.should.have.property('artistId');
 					res.body.artistId.should.equal('776Uo845nYHJpNaStv1Ds4');
+					done();
+				});
+		});
+	});
+
+	describe('GET /spotify/callback', () => {
+		it('it should redirect to localhost', (done) => {
+			chai.request(server)
+				.get('/spotify/callback')
+				.end((err, res) => {
+					res.should.redirectTo('http://localhost:8888/');
 					done();
 				});
 		});
