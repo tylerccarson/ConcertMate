@@ -25,16 +25,19 @@
     "webpack": "^3.4.1"
   },
   "devDependencies": {
-    "babel-core": "^6.23.1",
     "babel-cli": "^6.7.5",
+    "babel-core": "^6.23.1",
     "babel-loader": "^6.3.2",
     "babel-register": "^6.7.2",
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+    "chai": "^4.1.1",
+    "chai-http": "^3.0.0",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "mocha": "^3.5.0"
   },
   "scripts": {
     "dev": "webpack -d --watch",
     "start": "nodemon server/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "babel": {
     "presets": [
