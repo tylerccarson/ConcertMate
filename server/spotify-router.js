@@ -17,8 +17,6 @@ let tokenHeader = {
 	'Authorization': 'Bearer ' + token
 };
 
-let scopes = ['user-read-private', 'user-read-email'];
-
 //start authentication flow on refresh
 router.get('/login', (req, res) => {
 
