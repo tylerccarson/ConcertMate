@@ -1,13 +1,40 @@
 import React from 'react';
+import axios from 'axios';
+import ConcertEntry from './ConcertEntry.jsx';
 
-const Concerts = () => {
+class Concerts extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			events: []
+		}
+	}
 
-  return (
-    <div>CONCERTS COMPONENT</div>
+	componentWillMount() {
+    axios.get('/songkick/')
+    	.then((data) => {
+    		this.setState({
+    			events: data.data.event
+    		});
+    	})
+    	.catch((err) => {
+    		console.log('Error: ', err);
+    	});
+  }
 
+  render() {
+  	console.log(this.state.events);
+  	if (this.state.events) {
+		  return (
+		    <div>CONCERTS COMPONENT
+		    	{this.state.events.map((event, i) => {
+		    		return <ConcertEntry event={event} key={i} />
+		    	})}
+		    </div>
+		  )
+  	}
+  }
 
-
-  )
 }
 
 export default Concerts;
