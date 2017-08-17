@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Map from './components/Map.jsx';
+import { Grid, Row, Col } from 'react-bootstrap';
+import axios from 'axios';
 import Filters from './components/Filters.jsx';
+import Map from './components/Map.jsx';
 import Playlist from './components/Playlist.jsx';
 import Concerts from './components/Concerts.jsx';
-import axios from 'axios';
-import { Grid, Row, Col } from 'react-bootstrap';
 
 class App extends React.Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class App extends React.Component {
   componentWillMount() {
     //axios.get('/songkick/');
   }
-  
+
   render() {
     return (
       <Grid>
