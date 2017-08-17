@@ -21,18 +21,19 @@ class App extends React.Component {
 
   render() {
     return (
+
       <Grid>
-        <Row className="show-grid">
+        <Row>
           <Col md={12}>
             <h1>ConcertMate</h1>
           </Col>
         </Row>
-        <Row className="show-grid">
+        <Row>
           <Col md={12}>
             <Filters />
           </Col>
         </Row>
-        <Row className="show-grid">
+        <Row>
           <Col md={6}>
             <Map />
           </Col>
