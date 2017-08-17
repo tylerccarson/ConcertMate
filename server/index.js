@@ -18,7 +18,7 @@ app.use('/songkick', songkickRouter);
 app.get('/', (req, res, next) => {
   res.status(200);
   res.end();
-})
+});
 
 app.listen(port, () => {
   console.log('Listening on ', port);

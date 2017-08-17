@@ -4,13 +4,13 @@ import GoogleMapReact from 'google-map-react';
 import GoogleMapMarkers from 'google-map-react';
 
 const style = {
+  position: 'absolute',
+  overflow: 'visible',
+  top: 160,
   width: '80%',
   height: '80%',
   left: 160,
-  top: 160,
   margin: 0,
-  position: 'absolute',
-  overflow: 'visible',
   padding: 0
 }
 
@@ -40,7 +40,7 @@ class Map extends React.Component {
         onClick={this.handleClick.bind(this)}
       />
       </div>
-      )
+    )
   }
 }
 

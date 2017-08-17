@@ -44,6 +44,7 @@ router.post('/login', (req, res) => {
 router.post('/search', bodyParser.json(), (req, res) => {
 	let artist = encodeURI(req.body.artist);
 	let token = req.body.token;
+
 	axios.get(`https://api.spotify.com/v1/search?q=${artist}&type=artist&market=US&limit=10`, {
 			headers: {
 				'Authorization': 'Bearer ' + token
