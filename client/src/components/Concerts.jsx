@@ -1,13 +1,17 @@
 import React from 'react';
 
-const Concerts = () => {
+class Concerts extends React.Component {
 
-  return (
-    <div>CONCERTS COMPONENT</div>
+	componentWillMount() {
+    //axios.get('/songkick/');
+  }
 
+  render() {
+	  return (
+	    <div>CONCERTS COMPONENT</div>
+	  )
+  }
 
-
-  )
 }
 
 export default Concerts;

@@ -1,14 +1,12 @@
 import React from 'react';
 
-const Favorites = () => {
+class Favorites extends React.Component {
 
-
+	render() {
     return (
       <div>FILTERS COMPONENT</div>
-    )
-
-
-
+    )		
+	}
 };
 
 
