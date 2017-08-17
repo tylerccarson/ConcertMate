@@ -14,10 +14,6 @@ class App extends React.Component {
       venues: []
     };
   }
-  
-  componentWillMount() {
-    //axios.get('/songkick/');
-  }
 
   render() {
     return (
