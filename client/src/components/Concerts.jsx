@@ -12,8 +12,6 @@ class Concerts extends React.Component {
 
 	componentWillMount() {
 		let date = this.props.date;
-		console.log(date);
-
     axios.post('/songkick/', {
   		date: date
     })
@@ -29,8 +27,6 @@ class Concerts extends React.Component {
 
   componentWillReceiveProps() {
 		let date = this.props.date;
-		console.log(date);
-
     axios.post('/songkick/', {
   		date: date
     })

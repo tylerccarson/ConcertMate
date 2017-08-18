@@ -26,7 +26,7 @@ class App extends React.Component {
 
   render() {
     let formattedDate = this.state.startDate.format('YYYY-MM-DD');
-    
+
     return (
 
       <Grid>
@@ -37,7 +37,7 @@ class App extends React.Component {
         </Row>
         <Row>
           <Col md={12}>
-            <Filters handleDateChange={this.handleDateChange}/>
+            <Filters handleDateChange={this.handleDateChange} startDate={this.state.startDate}/>
           </Col>
         </Row>
         <Row>

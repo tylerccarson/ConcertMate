@@ -10,20 +10,15 @@ class Favorites extends React.Component {
 		}
 	}
 
-	
-
 	render() {
-  	//all inside a form with a submit button to launch a new get request and change event state on the app. Do it just here for now?
-  	//style float right: date picker
-  	//use this formatting for songkick API call
   	
     return (
     	<div>
 	    	<div>
 	    		Pick a day:
 	    		<DatePicker
-						dateFormat="YYYY/MM/DD"
-						selected={this.state.startDate}
+						dateFormat="MM/DD/YYYY"
+						selected={this.props.startDate}
 						onChange={this.props.handleDateChange} 
 					/>
 				</div>
@@ -31,6 +26,5 @@ class Favorites extends React.Component {
     )		
 	}
 };
-
 
 export default Favorites;
