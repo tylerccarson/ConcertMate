@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Grid, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
+import moment from 'moment';
 import Filters from './components/Filters.jsx';
 import Map from './components/Map.jsx';
 import Playlist from './components/Playlist.jsx';
@@ -11,11 +12,21 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      venues: []
+      events: [],
+      startDate: moment()
     };
+    this.handleDateChange = this.handleDateChange.bind(this);
+  }
+
+  handleDateChange(date) {
+    this.setState({
+      startDate: date
+    });
   }
 
   render() {
+    let formattedDate = this.state.startDate.format('YYYY-MM-DD');
+    
     return (
 
       <Grid>
@@ -26,7 +37,7 @@ class App extends React.Component {
         </Row>
         <Row>
           <Col md={12}>
-            <Filters />
+            <Filters handleDateChange={this.handleDateChange}/>
           </Col>
         </Row>
         <Row>
@@ -35,7 +46,7 @@ class App extends React.Component {
           </Col>
           <Col md={6}>
             <Playlist />
-            <Concerts />
+            <Concerts date={formattedDate}/>
           </Col>
         </Row>
       </Grid>

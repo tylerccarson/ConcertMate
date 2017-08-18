@@ -11,7 +11,29 @@ class Concerts extends React.Component {
 	}
 
 	componentWillMount() {
-    axios.get('/songkick/')
+		let date = this.props.date;
+		console.log(date);
+
+    axios.post('/songkick/', {
+  		date: date
+    })
+    	.then((data) => {
+    		this.setState({
+    			events: data.data.event
+    		});
+    	})
+    	.catch((err) => {
+    		console.log('Error: ', err);
+    	});
+  }
+
+  componentWillReceiveProps() {
+		let date = this.props.date;
+		console.log(date);
+
+    axios.post('/songkick/', {
+  		date: date
+    })
     	.then((data) => {
     		this.setState({
     			events: data.data.event
