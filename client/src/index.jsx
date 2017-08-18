@@ -15,6 +15,7 @@ class App extends React.Component {
       events: [],
       startDate: moment()
     };
+
     this.handleDateChange = this.handleDateChange.bind(this);
   }
 
@@ -22,10 +23,42 @@ class App extends React.Component {
     this.setState({
       startDate: date
     });
+    let formattedDate = this.state.startDate.format('YYYY-MM-DD');
+    axios.post('/songkick/', {
+      date: formattedDate
+    })
+      .then((data) => {
+        this.setState({
+          events: data.data.event
+        });
+      })
+      .catch((err) => {
+        console.log('Error: ', err);
+      });
   }
 
-  render() {
+  componentWillMount() {
     let formattedDate = this.state.startDate.format('YYYY-MM-DD');
+    axios.post('/songkick/', {
+      date: formattedDate
+    })
+      .then((data) => {
+        console.log('data received', data.data.event)
+        this.setState({
+          events: data.data.event
+        });
+        console.log('state:', this.state.events);
+      })
+      .catch((err) => {
+        console.log('Error: ', err);
+      });
+
+  }
+
+  // componentDidUpdate() {
+  // }
+
+  render() {
 
     return (
 
@@ -46,7 +79,7 @@ class App extends React.Component {
           </Col>
           <Col md={6}>
             <Playlist />
-            <Concerts date={formattedDate}/>
+            <Concerts events={this.state.events}/>
           </Col>
         </Row>
       </Grid>
