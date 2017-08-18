@@ -2,59 +2,36 @@ import React from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
-//import style from 'react-datepicker/dist/react-datepicker.css';
-
-//CSS Modules, react-datepicker-cssmodules.css
-//import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-
-//what does this component need? Needs to be a form that allows for search based on date, location?, event type, also possible by venue and artist, which require slightly different api paths
-//bootstrap will allow for easier for handling than raw react
-
 class Favorites extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			startDate: moment(),
-			endDate: moment()
+			startDate: moment()
 		}
-		this.handleChangeStart = this.handleChangeStart.bind(this);
-		this.handleChangeEnd = this.handleChangeEnd.bind(this);
+		this.handleDateChange = this.handleDateChange.bind(this);
 	}
 
-	handleChangeStart(date) {
+	handleDateChange(date) {
 		this.setState({
 			startDate: date
-		});
-	}
-
-	handleChangeEnd(date) {
-		this.setState({
-			endDate: date
 		});
 	}
 
 	render() {
   	//all inside a form with a submit button to launch a new get request and change event state on the app. Do it just here for now?
   	//style float right: date picker
+  	//use this formatting for songkick API call
+  	console.log(this.state.startDate.format('YYYY-MM-DD'));
     return (
     	<div>
-	      <div>FILTERS COMPONENT</div>
 	    	<div>
+	    		Pick a day:
 	    		<DatePicker
-				    selected={this.state.startDate}
-				    selectsStart
-				    startDate={this.state.startDate}
-				    endDate={this.state.endDate}
-				    onChange={this.handleChangeStart}
+						dateFormat="YYYY/MM/DD"
+						selected={this.state.startDate}
+						onChange={this.handleDateChange} 
 					/>
-					<DatePicker
-					    selected={this.state.endDate}
-					    selectsEnd
-					    startDate={this.state.startDate}
-					    endDate={this.state.endDate}
-					    onChange={this.handleChangeEnd}
-					/>
-	    	</div>
+				</div>
     	</div>
     )		
 	}
