@@ -2,7 +2,10 @@ import React from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
-//import 'react-datepicker/dist/react-datepicker.css';
+import 'react-datepicker/dist/react-datepicker.css';
+
+//CSS Modules, react-datepicker-cssmodules.css
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
 //what does this component need? Needs to be a form that allows for search based on date, location?, event type, also possible by venue and artist, which require slightly different api paths
 //bootstrap will allow for easier for handling than raw react
