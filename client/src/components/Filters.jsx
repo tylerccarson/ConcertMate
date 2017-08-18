@@ -2,7 +2,7 @@ import React from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
-import 'react-datepicker/dist/react-datepicker.css';
+//import 'react-datepicker/dist/react-datepicker.css';
 
 //what does this component need? Needs to be a form that allows for search based on date, location?, event type, also possible by venue and artist, which require slightly different api paths
 //bootstrap will allow for easier for handling than raw react
@@ -11,7 +11,7 @@ class Favorites extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			startDate: moment()
+			startDate: moment(),
 			endDate: moment()
 		}
 		this.handleChangeStart = this.handleChangeStart.bind(this);
