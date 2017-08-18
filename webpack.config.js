@@ -18,16 +18,8 @@ var DIST_DIR = path.join(__dirname, 'client/dist');
                  query: {
                      presets: ['es2015', 'react']
                  }
-             },
-             { 
-                test: /\.css/, 
-                loader: ExtractTextPlugin.extract('style-loader', 'css-loader') 
-            },
-            { 
-                test: /\.css$/, 
-                loader: 'style-loader!css-loader' 
-            }
-         ]
+             }
+         ],
      },
      devtool: 'source-map'
  };
