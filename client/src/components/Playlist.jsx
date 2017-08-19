@@ -34,6 +34,7 @@ class Playlist extends React.Component {
 					console.log(error);
 				});
 		}
+
 	}
 
 	handleArtistEntry(artistEntryEvent) {
@@ -44,9 +45,9 @@ class Playlist extends React.Component {
 
 	handleFormSubmit(formSubmitEvent) {
 		formSubmitEvent.preventDefault();
-		if (this.state.artist) {
+		if (this.props.artist) {
 			let data = {
-				artist: this.state.artist,
+				artist: this.props.artist,
 				token: this.state.token
 			};
 			axios.post('/spotify/search', data)
@@ -86,7 +87,7 @@ class Playlist extends React.Component {
   					frameBorder="0" allowTransparency="true"></iframe>
 		    </div>
 	    </div>
-	  )		
+	  )
 	}
 }
 

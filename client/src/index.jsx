@@ -13,7 +13,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       events: [],
-      startDate: moment()
+      startDate: moment(),
+      artist: ''
     };
 
     this.handleDateChange = this.handleDateChange.bind(this);
@@ -35,6 +36,13 @@ class App extends React.Component {
       .catch((err) => {
         console.log('Error: ', err);
       });
+  }
+
+  handleArtistClick(clickedArtist) {
+    this.setState({
+      artist: clickedArtist
+    })
+    console.log('handleArtistClick is invoked and here is the state: ', clickedArtist)
   }
 
   componentWillMount() {
@@ -78,8 +86,8 @@ class App extends React.Component {
             <Map />
           </Col>
           <Col md={6}>
-            <Playlist />
-            <Concerts events={this.state.events}/>
+            <Playlist artist={this.state.artist}/>
+            <Concerts events={this.state.events} handleArtistClick={this.handleArtistClick.bind(this)}/>
           </Col>
         </Row>
       </Grid>

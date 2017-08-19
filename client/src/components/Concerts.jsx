@@ -6,7 +6,7 @@ const Concerts = (props) => {
 	return (
     <div>CONCERTS COMPONENT
     	{props.events.map((event, i) => {
-    		return <ConcertEntry event={event} key={i} />
+    		return <ConcertEntry event={event} key={i} handleArtistClick={props.handleArtistClick}/>
     	})}
     </div>
   )
