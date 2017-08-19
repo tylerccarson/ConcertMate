@@ -19,7 +19,7 @@ var DIST_DIR = path.join(__dirname, 'client/dist');
                      presets: ['es2015', 'react']
                  }
              }
-         ]
+         ],
      },
      devtool: 'source-map'
  };

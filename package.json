@@ -12,6 +12,7 @@
     "express": "^4.10.1",
     "google-map-react": "^0.24.0",
     "jquery": "^3.1.1",
+    "moment": "^2.18.1",
     "morgan": "^1.4.1",
     "mysql": "^2.14.1",
     "mysql2": "^1.4.0",
@@ -19,6 +20,7 @@
     "querystring": "^0.2.0",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.2",
+    "react-datepicker": "^0.53.0",
     "react-dom": "^15.6.1",
     "request": "^2.81.0",
     "sequelize": "^3.21.0",
@@ -32,8 +34,10 @@
     "babel-register": "^6.7.2",
     "chai": "^4.1.1",
     "chai-http": "^3.0.0",
+    "css-loader": "^0.28.5",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
-    "mocha": "^3.5.0"
+    "mocha": "^3.5.0",
+    "style-loader": "^0.18.2"
   },
   "scripts": {
     "dev": "webpack -d --watch",
