@@ -14,10 +14,43 @@ class App extends React.Component {
     this.state = {
       events: [],
       startDate: moment(),
-      artist: ''
+      artist: '',
+      artistId: undefined,
+      token: undefined
     };
 
     this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleArtistClick = this.handleArtistClick.bind(this);
+  }
+
+  componentWillMount() {
+    this.authenticateSpotify();
+    this.requestSongkickEvents();
+  }
+
+  authenticateSpotify() {
+    if (window.location.hash) {
+      let hash = window.location.hash;
+      let token = hash.split('&')[0].split('=')[1];
+      this.setState({
+        token: token
+      });
+      axios.post('/spotify/login', {
+          data: token
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    } else {
+      axios.get('/spotify/login')
+        .then((response) => {
+          let loginUrl = response.data;
+          window.location = loginUrl;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   }
 
   handleDateChange(date) {
@@ -41,11 +74,38 @@ class App extends React.Component {
   handleArtistClick(clickedArtist) {
     this.setState({
       artist: clickedArtist
+    }, () => {
+      console.log('new state: ', this.state.artist);
+       this.requestArtistId();
     })
-    console.log('handleArtistClick is invoked and here is the state: ', clickedArtist)
   }
 
-  componentWillMount() {
+  requestArtistId() {
+    if (this.state.artist) {
+      let data = {
+          artist: this.state.artist,
+          token: this.state.token
+        };
+        //console.log('this is data: ', data.artist)
+        axios.post('/spotify/search', data)
+          .then((res) => {
+            //console.log('POST REQ RES: ', res);
+            this.setState({
+              artistId: res.data.artistId,
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+    } else {
+      this.setState({
+        artist: ''
+      })
+    }
+  }
+
+
+  requestSongkickEvents() {
     let formattedDate = this.state.startDate.format('YYYY-MM-DD');
     axios.post('/songkick/', {
       date: formattedDate
@@ -86,8 +146,8 @@ class App extends React.Component {
             <Map />
           </Col>
           <Col md={6}>
-            <Playlist artist={this.state.artist}/>
-            <Concerts events={this.state.events} handleArtistClick={this.handleArtistClick.bind(this)}/>
+            <Playlist artistId={this.state.artistId}/>
+            <Concerts events={this.state.events} handleArtistClick={this.handleArtistClick}/>
           </Col>
         </Row>
       </Grid>
