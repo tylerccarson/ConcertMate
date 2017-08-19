@@ -13,6 +13,7 @@ router.post('/', (req, res) => {
   axios.get(url)
     .then((events) => {
       let data = events.data.resultsPage.results;
+      console.log(events.headers);
       res.send(data);
     })
     .catch((err) => {

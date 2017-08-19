@@ -19,6 +19,9 @@ describe('Spotify API', () => {
 				.send(data)
 				.end((err, res) => {
 					res.should.have.status(200);
+					expect(res).to.have.headers;
+					expect(res).to.have.header('content-type', 'application/json; charset=utf-8');
+					expect(res.body.event[0]).to.have.property('displayName');
 					done();
 				});
 		 });
@@ -30,7 +33,7 @@ let token = 'BQAqIKCIRwIueBXRi_pFsRRyJa_zh-w7FdpcQY7TQdR0TDlAOeCPDCF6NAtssY_tDp-
 
 describe('Spotify API', () => {
 	beforeEach(() => {
-		// Write script to get a token
+		// Write script to get a token programmatically from spotify api
 	});
 
 	describe('GET /spotify/login', () => {
