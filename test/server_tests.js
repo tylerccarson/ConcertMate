@@ -6,6 +6,19 @@ let expect = require('chai').expect;
 
 chai.use(chaiHTTP);
 
+describe('Spotify API', () => {
+	describe('POST /songkick/', () => {
+		it('it should send back a concert data', (done) => {
+			chai.request(server)
+				.post('/songkick/')
+				.end((err, res) => {
+					res.should.have.status(200);
+					done();
+				});
+		 });
+	});
+});
+
 // Need to fetch a new token manually from here https://developer.spotify.com/web-api/console/get-audio-features-track/
 let token = 'BQAqIKCIRwIueBXRi_pFsRRyJa_zh-w7FdpcQY7TQdR0TDlAOeCPDCF6NAtssY_tDp-wy66NRvhYZ8R9epQSqQtyhM8IpZ7ZGyIx-ob3La7D4kDcM9X3uIvm1ZNq7tlnXJKB_j2HemlUrUoI_nZ8GLb2HZMlGEkcANRjRAbHrCjSIwjygE-iM_ZR9i6DP-X7P8WUxiKO0d0a0yt78PTmcXiSIkMEVBWIk5urawwa7K5kvsMz_-eWevUWQlR1yGvUDDXIptaEeUKn7r8PDKc';
 
