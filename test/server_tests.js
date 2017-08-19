@@ -3,14 +3,20 @@ let chaiHTTP = require('chai-http');
 let server = require('../server/index.js');
 let should = chai.should();
 let expect = require('chai').expect;
+let moment = require('moment');
 
 chai.use(chaiHTTP);
 
 describe('Spotify API', () => {
 	describe('POST /songkick/', () => {
 		it('it should send back a concert data', (done) => {
+			let formattedDate = moment().format('YYYY-MM-DD');
+			let data = {
+	      date: formattedDate
+	    };
 			chai.request(server)
 				.post('/songkick/')
+				.send(data)
 				.end((err, res) => {
 					res.should.have.status(200);
 					done();
