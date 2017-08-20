@@ -8,15 +8,6 @@ const seq = new Sequelize('greenfielddb', user, password, {
   dialect: 'mysql'
 });
 
-seq
-  .authenticate()
-  .then(() => {
-    console.log('connection granted');
-  })
-  .catch(err => {
-    console.log('error connecting to DB ', err);
-  });
-
 const Events = seq.define('events', {
   displayName: Sequelize.STRING,
   headline: Sequelize.STRING,
@@ -28,12 +19,40 @@ const Events = seq.define('events', {
   longitude: Sequelize.INTEGER
 });
 
-let createEvent = Events.create({
-	//fill in attribues
+Events.sync({force: true}).then(() => {
+	console.log('Created "events" table');
 });
 
-let getEvents = function(date) {
-	Events.findAll({
-		date: date
+seq
+  .authenticate()
+  .then(() => {
+    console.log('connection granted');
+  })
+  .catch(err => {
+    console.log('error connecting to DB ', err);
+  });
+
+let createEvent = (event) => {
+	Events.create({
+		//fill in attribues
+		displayName: Sequelize.STRING,
+	  headline: Sequelize.STRING,
+	  uri: Sequelize.STRING,
+	  time: Sequelize.TIME,
+	  date: Sequelize.DATEONLY,
+	  venue: Sequelize.STRING,
+	  latitude: Sequelize.INTEGER,
+	  longitude: Sequelize.INTEGER
 	});
+} 
+
+let getEvents = (date) => {
+	Events.findAll({
+		where: {
+			date: date
+		}
+	})
 };
+
+module.exports.createEvent = createEvent;
+module.exports.getEvents = getEvents;
