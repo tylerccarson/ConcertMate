@@ -5,12 +5,12 @@ import GoogleMapMarkers from 'google-map-react';
 import Markers from './Markers.jsx';
 
 const style = {
-  position: 'absolute',
+  position: 'fixed',
   overflow: 'visible',
-  top: 160,
-  width: '80%',
-  height: '80%',
-  left: 160,
+  top: 120,
+  width: '50%',
+  height: '50%',
+  left: 10,
   margin: 0,
   padding: 0
 }
@@ -47,17 +47,17 @@ class Map extends React.Component {
   render() {
     let context = this;
     let markers = this.state.markerLocs.map((loc) => {
-      return <Markers map={context} lat={loc.lat} lng={loc.lng} />
-    })
+      return <Markers lat={loc.lat} lng={loc.lng} />
+    });
+    console.log('markers ', markers);
     return (
       <div style={style}>
         <GoogleMapReact
-          resetBoundsOnResize
           defaultCenter={this.state.center}
           defaultZoom={this.state.zoom}
-          onClick={this.handleClick.bind(this)}
-        />
-        {markers}
+        >
+          {markers}
+        </GoogleMapReact>
       </div>
     )
   }
