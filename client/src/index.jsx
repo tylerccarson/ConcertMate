@@ -29,8 +29,14 @@ class App extends React.Component {
 
   componentWillMount() {
     this.authenticateSpotify();
+    //will want to take out this request-- not necessary before authentication has taken place
     this.requestSongkickEvents();
   }
+
+  // use this after the database is set up
+  // componentDidUpdate() {
+  //   this.requestSongkickEvents()
+  // }
 
   authenticateSpotify() {
     if (window.location.hash) {
@@ -61,18 +67,7 @@ class App extends React.Component {
     this.setState({
       startDate: date
     });
-    let formattedDate = this.state.startDate.format('YYYY-MM-DD');
-    axios.post('/songkick/', {
-      date: formattedDate
-    })
-      .then((data) => {
-        this.setState({
-          events: data.data.event
-        });
-      })
-      .catch((err) => {
-        console.log('Error: ', err);
-      });
+    this.requestSongkickEvents();
   }
 
   handleArtistClick(clickedArtist) {
@@ -137,8 +132,6 @@ class App extends React.Component {
 
   }
 
-  // componentDidUpdate() {
-  // }
 
  render() {
 
