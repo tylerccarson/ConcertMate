@@ -4,7 +4,7 @@ import ConcertEntry from './ConcertEntry.jsx';
 
 const Concerts = (props) => {
 	return (
-    <div>CONCERTS COMPONENT
+    <div>
     	{props.events.map((event, i) => {
     		return <ConcertEntry event={event} key={i} handleArtistClick={props.handleArtistClick}/>
     	})}

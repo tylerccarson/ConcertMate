@@ -9,6 +9,7 @@ import Playlist from './components/Playlist.jsx';
 import Concerts from './components/Concerts.jsx';
 import ReactScrollbar from 'react-scrollbar-js';
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -132,6 +133,11 @@ class App extends React.Component {
       height: 400,
     };
 
+    const scrollbar = {
+      width: 600,
+      height: 400,
+    };
+
     return (
 
       <Grid>
@@ -163,6 +169,7 @@ class App extends React.Component {
 
 
 }
+
 
 ReactDOM.render(<App />, document.getElementById('app'));
 
