@@ -7,6 +7,7 @@ import Filters from './components/Filters.jsx';
 import Map from './components/Map.jsx';
 import Playlist from './components/Playlist.jsx';
 import Concerts from './components/Concerts.jsx';
+import ReactScrollbar from 'react-scrollbar-js';
 
 class App extends React.Component {
   constructor(props) {
@@ -124,7 +125,12 @@ class App extends React.Component {
   // componentDidUpdate() {
   // }
 
-  render() {
+ render() {
+
+    const scrollbar = {
+      width: 600,
+      height: 400,
+    };
 
     return (
 
@@ -145,13 +151,17 @@ class App extends React.Component {
           </Col>
           <Col md={6}>
             <Playlist artistId={this.state.artistId}/>
-            <Concerts events={this.state.events} handleArtistClick={this.handleArtistClick}/>
+            <ReactScrollbar style={scrollbar}>
+              <Concerts events={this.state.events} handleArtistClick={this.handleArtistClick}/>
+            </ReactScrollbar>
           </Col>
         </Row>
       </Grid>
 
     )
   }
+
+
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
