@@ -86,10 +86,8 @@ class App extends React.Component {
           artist: this.state.artist,
           token: this.state.token
         };
-        //console.log('this is data: ', data.artist)
         axios.post('/spotify/search', data)
           .then((res) => {
-            //console.log('POST REQ RES: ', res);
             this.setState({
               artistId: res.data.artistId,
             });

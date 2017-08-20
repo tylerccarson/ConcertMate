@@ -1,18 +1,5 @@
 import React from 'react';
 
-// const ConcertEntry = (props) => {
-// 	return (
-// 		<div>
-//       <span onClick={}>{props.event.performance[0].displayName}</span>
-//       <span> at {props.event.venue.displayName} on {props.event.start.date} {props.event.start.time}</span>
-// 			<a href={props.event.uri}> Buy Tickets</a>
-//     </div>
-// 	)
-// }
-
-// export default ConcertEntry;
-
-
 class ConcertEntry extends React.Component {
   constructor(props) {
     super(props)
@@ -34,7 +21,6 @@ class ConcertEntry extends React.Component {
         <a href={this.props.event.uri}> Buy Tickets</a>
       </div>
     )
-
   }
 
 };
