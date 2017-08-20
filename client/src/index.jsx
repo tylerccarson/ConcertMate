@@ -133,11 +133,6 @@ class App extends React.Component {
       height: 400,
     };
 
-    const scrollbar = {
-      width: 600,
-      height: 400,
-    };
-
     return (
 
       <Grid>
@@ -166,8 +161,6 @@ class App extends React.Component {
 
     )
   }
-
-
 }
 
 
