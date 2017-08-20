@@ -5,7 +5,7 @@ let db = require('../database/index.js');
 let spotifyRouter = require('./spotify-router.js');
 let songkickRouter = require('./songkick-router.js');
 
-let port = process.env.PORT || 8888;
+let port = process.env.PORT || 1337;
 
 app.use(express.static(__dirname + '/../client/dist'));
 

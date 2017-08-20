@@ -147,7 +147,7 @@ class App extends React.Component {
         </Row>
         <Row>
           <Col md={6}>
-            <Map />
+            <Map events={this.state.events}/>
           </Col>
           <Col md={6}>
             <Playlist artistId={this.state.artistId}/>

@@ -2,6 +2,7 @@ import React from 'react';
 
 import GoogleMapReact from 'google-map-react';
 import GoogleMapMarkers from 'google-map-react';
+import Markers from './Markers.jsx';
 
 const style = {
   position: 'absolute',
@@ -20,25 +21,43 @@ class Map extends React.Component {
     this.state = {
       center: {lat: 37.783607, lng:-122.408967},
       zoom: 16,
-      markers: []
+      markerLocs: []
     }
   }
   
   handleClick(event) {
-    this.setState((prevState) => {
-      return {markers: prevState.markers.concat([[event.lat, event.lng]])};
-    })
+    // should there even be a handleClick for the map itself? 
+    // or should there just be a hover event for markers?
+    // or should clicking on the marker highlight all concerts at that venue?
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let events = nextProps.events;
+    let venues = events.map((event) => {
+      return {
+        lat: event.venue.lat,
+        lng: event.venue.lng
+      }
+    });
+    this.setState({
+      markerLocs: venues
+    });
   }
   
   render() {
-    console.log(this.state.markers);
+    let context = this;
+    let markers = this.state.markerLocs.map((loc) => {
+      return <Markers map={context} lat={loc.lat} lng={loc.lng} />
+    })
     return (
       <div style={style}>
-      <GoogleMapReact
-        defaultCenter={this.state.center}
-        defaultZoom={this.state.zoom}
-        onClick={this.handleClick.bind(this)}
-      />
+        <GoogleMapReact
+          resetBoundsOnResize
+          defaultCenter={this.state.center}
+          defaultZoom={this.state.zoom}
+          onClick={this.handleClick.bind(this)}
+        />
+        {markers}
       </div>
     )
   }
