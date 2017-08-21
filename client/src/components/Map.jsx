@@ -35,9 +35,9 @@ class Map extends React.Component {
     let events = nextProps.events;
     let venues = events.map((event) => {
       return {
-        lat: event.venue.lat,
-        lng: event.venue.lng,
-        name: event.venue.displayName
+        lat: event.latitude,
+        lng: event.longitude,
+        name: event.venue
       }
     });
     this.setState({
