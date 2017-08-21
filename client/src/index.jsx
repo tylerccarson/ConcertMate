@@ -33,6 +33,7 @@ class App extends React.Component {
     this.requestSongkickEvents();
   }
 
+  // get the hash fragment from the URL if you've already logged in, otherwise redirect to the login page
   authenticateSpotify() {
     if (window.location.hash) {
       let hash = window.location.hash;
@@ -74,6 +75,8 @@ class App extends React.Component {
     })
   }
 
+  // passed down to the ConcertEntry component as a callback, change state based on whether or not
+  // the mouse is currently hovering the event
   handleHover(hoveredEvent) {
     if (hoveredEvent) {
       this.setState({
@@ -108,7 +111,7 @@ class App extends React.Component {
     }
   }
 
-
+  // 
   requestSongkickEvents(date) {
     let formattedDate = this.state.startDate.format('YYYY-MM-DD');
     let latitude = this.state.mapCenter.lat;
@@ -122,13 +125,11 @@ class App extends React.Component {
       lng: longitude
     })
       .then((data) => {
-        console.log('data received', data.data)
         this.setState({
           events: data.data,
           artist: data.data[0].headline
         });
         this.requestArtistId();
-        console.log('state:', this.state.events);
       })
       .catch((err) => {
         console.log('Error: ', err);
