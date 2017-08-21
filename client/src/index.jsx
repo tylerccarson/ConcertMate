@@ -10,7 +10,6 @@ import Concerts from './components/Concerts.jsx';
 import ReactScrollbar from 'react-scrollbar-js';
 import {PageHeader} from 'react-bootstrap';
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
