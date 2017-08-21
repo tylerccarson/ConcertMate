@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import {Panel} from 'react-bootstrap'
 
 const Playlist = (props) => {
 	let iframeBaseURL = 'https://open.spotify.com/embed?uri=spotify:';
@@ -8,11 +9,12 @@ const Playlist = (props) => {
 
   return (
   	<div>
-	    <div>
+	    <Panel collapsible defaultExpanded header="Preview Artist" bsStyle="success">
 	    	<iframe src={iframeSRC}
 					width="320" height="100"
 					frameBorder="0" allowTransparency="true"></iframe>
-	    </div>
+
+	    </Panel>
     </div>
   )
 };

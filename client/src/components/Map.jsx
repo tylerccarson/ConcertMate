@@ -7,10 +7,10 @@ import Markers from './Markers.jsx';
 const style = {
   position: 'fixed',
   overflow: 'visible',
-  top: 120,
-  width: '50%',
-  height: '80%',
-  left: 10,
+  top: 190,
+  left: 65,
+  width: '45%',
+  height: '70%',
   margin: 0,
   padding: 0
 }

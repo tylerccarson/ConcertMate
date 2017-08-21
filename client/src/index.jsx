@@ -8,6 +8,7 @@ import Map from './components/Map.jsx';
 import Playlist from './components/Playlist.jsx';
 import Concerts from './components/Concerts.jsx';
 import ReactScrollbar from 'react-scrollbar-js';
+import {PageHeader} from 'react-bootstrap';
 
 
 class App extends React.Component {
@@ -133,7 +134,7 @@ class App extends React.Component {
  render() {
 
     const scrollbar = {
-      width: 600,
+      width: 555,
       height: 420,
     };
 
@@ -142,7 +143,9 @@ class App extends React.Component {
       <Grid>
         <Row>
           <Col md={12}>
-            <h1>ConcertMate</h1>
+          <div>
+            <PageHeader>ConcertMate <small>discover upcoming concerts around you</small></PageHeader>
+          </div>
           </Col>
         </Row>
         <Row>

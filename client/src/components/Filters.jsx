@@ -22,33 +22,26 @@ class Favorites extends React.Component {
   }
 
   handleSubmit(event) {
-    
+
   }
 
 	render() {
-  	
-    return (
-    	<div>
-        <div>
-          Pick a day:
-          <DatePicker
-            dateFormat="MM/DD/YYYY"
-            selected={this.props.startDate}
-            onChange={this.props.handleDateChange}
-          />
-        </div>
 
-          <Navbar>
-            <Navbar.Form pullLeft>
-              <FormGroup>
-                <FormControl type="text" placeholder="Enter starting location" onChange={this.handleSearch}/>
-              </FormGroup>
-              {' '}
-              <Button type="submit" onClick={this.handleSubmit}>Submit</Button>
-            </Navbar.Form>
-          </Navbar>
-        </div>
-    )		
+    return (
+      <div>
+
+        <Navbar>
+          <Navbar.Form pullLeft>
+            <FormGroup>
+              <FormControl type="text" placeholder="Location..." onChange={this.handleSearch}/>
+            </FormGroup>
+            {' '}
+            <Button type="submit" onClick={this.handleSubmit}>Submit</Button>
+          </Navbar.Form>
+        </Navbar>
+      </div>
+
+    )
 	}
 };
 
