@@ -4,7 +4,7 @@ let axios = require('axios');
 let apiKey = 'qRDqWCS0qJpDH4Qp';
 let bodyParser = require('body-parser');
 let db = require('../database/index.js');
-let Promise = require('bluebird');
+let async = require('async');
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));
@@ -20,11 +20,11 @@ router.post('/', (req, res) => {
       axios.get(url)
         .then((events) => {
           let data = events.data.resultsPage.results.event;
-          data.forEach((event) => {
-            db.createEvent(event);      
+          async.each(data, (event) => {
+            db.createEvent(event);
           })
         })
-        //how do wait for all create event?
+        //how to wait for all create events? This isn't getting called
         .then(() => {
           db.getEvents(date, (newEvents) => {
             //console.log('2 ', newEvents[0]);
