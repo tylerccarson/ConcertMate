@@ -34,7 +34,6 @@ class ConcertEntry extends React.Component {
         <span>
             {this.props.event.headline}
         </span>
-        <span> at {this.props.event.venue} on {this.props.event.date} {this.props.event.time}</span>
         <a href={this.props.event.uri}> Buy Tickets</a>
       </ListGroupItem>
     )
