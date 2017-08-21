@@ -10,7 +10,7 @@ const Playlist = (props) => {
   	<div>
 	    <div>
 	    	<iframe src={iframeSRC}
-					width="320" height="120"
+					width="320" height="100"
 					frameBorder="0" allowTransparency="true"></iframe>
 	    </div>
     </div>

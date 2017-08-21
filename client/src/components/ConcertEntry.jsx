@@ -1,4 +1,5 @@
 import React from 'react';
+import {ListGroupItem} from 'react-bootstrap';
 
 class ConcertEntry extends React.Component {
   constructor(props) {
@@ -15,14 +16,15 @@ class ConcertEntry extends React.Component {
   render() {
 
     return (
-      <div>
-        <span onClick={() => this.handleClick(this.props.event.performance[0].displayName)}>{this.props.event.performance[0].displayName}</span>
-        <span> at {this.props.event.venue.displayName} on {this.props.event.start.date} {this.props.event.start.time}</span>
+      <ListGroupItem
+        header={this.props.event.performance[0].displayName} onClick={() => this.handleClick(this.props.event.performance[0].displayName)}>
+        <span> {this.props.event.venue.displayName} on {this.props.event.start.date} {this.props.event.start.time}</span>
         <a href={this.props.event.uri}> Buy Tickets</a>
-      </div>
+      </ListGroupItem>
     )
   }
 
 };
 
 export default ConcertEntry;
+

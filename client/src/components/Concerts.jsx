@@ -1,14 +1,15 @@
 import React from 'react';
 import axios from 'axios';
 import ConcertEntry from './ConcertEntry.jsx';
+import {ListGroup} from 'react-bootstrap';
 
 const Concerts = (props) => {
 	return (
-    <div>CONCERTS COMPONENT
+    <ListGroup>
     	{props.events.map((event, i) => {
     		return <ConcertEntry event={event} key={i} handleArtistClick={props.handleArtistClick}/>
     	})}
-    </div>
+    </ListGroup>
   )
 }
 
