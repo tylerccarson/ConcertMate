@@ -1,7 +1,6 @@
 let router = require('express').Router();
 let axios = require('axios');
 let bodyParser = require('body-parser');
-let helpers = require('./spotify-helpers.js');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));
 
