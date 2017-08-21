@@ -13,14 +13,14 @@ const Events = seq.define('events', {
   displayName: Sequelize.STRING,
   headline: Sequelize.STRING,
   uri: Sequelize.STRING,
-  time: Sequelize.TIME,
-  date: Sequelize.DATEONLY,
+  time: Sequelize.STRING,
+  date: Sequelize.STRING,
   venue: Sequelize.STRING,
   latitude: Sequelize.STRING,
   longitude: Sequelize.STRING
 });
 
-Events.sync({force: true}).then(() => {
+Events.sync({force: false}).then(() => {
 	console.log('Created "events" table');
 });
 
@@ -46,12 +46,18 @@ let createEvent = (event) => {
 	});
 } 
 
-let getEvents = (date) => {
+let getEvents = (date, callback) => {
 	return Events.findAll({
 		where: {
 			date: date
 		},
 		raw: true
+	})
+	.then((data) => {
+		callback(data);
+	})
+	.catch((error) => {
+		console.log("Error getting events: ", error);
 	})
 };
 
