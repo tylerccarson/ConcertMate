@@ -159,7 +159,7 @@ class App extends React.Component {
         </Row>
         <Row>
           <Col md={6}>
-            <Map hovered={this.state.hoveredEvent} events={this.state.events}/>
+            <Map mapCenter={this.state.mapCenter} hovered={this.state.hoveredEvent} events={this.state.events}/>
           </Col>
           <Col md={6}>
             <Playlist artistId={this.state.artistId}/>
