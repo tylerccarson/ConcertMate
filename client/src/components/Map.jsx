@@ -9,7 +9,7 @@ const style = {
   overflow: 'visible',
   top: 120,
   width: '50%',
-  height: '50%',
+  height: '80%',
   left: 10,
   margin: 0,
   padding: 0
@@ -24,9 +24,9 @@ class Map extends React.Component {
       markerLocs: []
     }
   }
-  
+
   handleClick(event) {
-    // should there even be a handleClick for the map itself? 
+    // should there even be a handleClick for the map itself?
     // or should there just be a hover event for markers?
     // or should clicking on the marker highlight all concerts at that venue?
   }
@@ -43,7 +43,7 @@ class Map extends React.Component {
       markerLocs: venues
     });
   }
-  
+
   render() {
     let context = this;
     let markers = this.state.markerLocs.map((loc) => {

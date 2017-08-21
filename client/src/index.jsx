@@ -130,7 +130,7 @@ class App extends React.Component {
 
     const scrollbar = {
       width: 600,
-      height: 400,
+      height: 420,
     };
 
     return (
