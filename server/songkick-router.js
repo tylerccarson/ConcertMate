@@ -22,16 +22,20 @@ router.post('/', (req, res) => {
       axios.get(url)
         .then((events) => {
           let data = events.data.resultsPage.results.event;
-          async.each(data, (event) => {
+          async.each(data, (event, callback) => {
             db.createEvent(event);
-          })
-        })
-        // async bug
-        .then(() => {
-          db.getEvents(date, (newEvents) => {
-            res.send(newEvents);
+            console.log('event saved: ', event);
+            callback();
+          }, (err) => {
+            setTimeout(function() {
+              db.getEvents(date, (newEvents) => {
+                //new events is returning empty when it should have the newly saved event data, set timeout is a patch
+                console.log('getting events: ', newEvents);
+                res.send(newEvents);
+            }, 500);
+            });
           });
-        })  
+        });
       }
     })
     .catch((err) => {
