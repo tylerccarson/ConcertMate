@@ -67,7 +67,7 @@ class App extends React.Component {
     this.setState({
       startDate: date
     });
-    this.requestSongkickEvents();
+    this.requestSongkickEvents(date);
   }
 
   handleArtistClick(clickedArtist) {
@@ -114,8 +114,11 @@ class App extends React.Component {
   }
 
 
-  requestSongkickEvents() {
+  requestSongkickEvents(date) {
     let formattedDate = this.state.startDate.format('YYYY-MM-DD');
+    if (date) {
+      formattedDate = date.format('YYYY-MM-DD')
+    }
     axios.post('/songkick/', {
       date: formattedDate
     })
