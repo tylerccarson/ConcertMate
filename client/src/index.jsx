@@ -19,8 +19,7 @@ class App extends React.Component {
       artist: '',
       hoveredEvent: '',
       artistId: undefined,
-      token: undefined,
-
+      token: undefined
     };
 
     this.handleDateChange = this.handleDateChange.bind(this);

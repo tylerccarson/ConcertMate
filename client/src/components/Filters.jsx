@@ -6,7 +6,8 @@ class Favorites extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			startDate: moment()
+			startDate: moment(),
+      radius: 5
 		}
 	}
 
@@ -19,7 +20,7 @@ class Favorites extends React.Component {
 	    		<DatePicker
 						dateFormat="MM/DD/YYYY"
 						selected={this.props.startDate}
-						onChange={this.props.handleDateChange} 
+						onChange={this.props.handleDateChange}
 					/>
 				</div>
     	</div>
