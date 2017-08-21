@@ -20,8 +20,8 @@
 
 ## Usage
 
-> Apply filters or click where you are to generate a list of concerts in your immediate area
-> Check out that playlist!!
+> Apply filters or click where you are to generate a list of concerts in your immediate area, a listen to top tracks of any clicked artist/event
+> 
 
 ## Requirements
 
@@ -48,7 +48,7 @@ npm install
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_DOC)
+View the project roadmap [here](https://docs.google.com/document/d/1JaED9wKnWgJs4NfgddPCDYzuq1ZmzEWUe5YJnrG30gs/edit)
 
 
 ## Contributing
