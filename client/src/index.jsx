@@ -29,14 +29,8 @@ class App extends React.Component {
 
   componentWillMount() {
     this.authenticateSpotify();
-    //will want to take out this request-- not necessary before authentication has taken place
     this.requestSongkickEvents();
   }
-
-  // use this after the database is set up
-  // componentDidUpdate() {
-  //   this.requestSongkickEvents()
-  // }
 
   authenticateSpotify() {
     if (window.location.hash) {
