@@ -13,7 +13,6 @@ router.post('/', (req, res) => {
 	let date = req.body.date;
   db.getEvents(date, (dbEvents) => {
     if (dbEvents.length) {
-        //console.log('1 ', dbEvents[0]);
         res.send(dbEvents);
     } else {
     	let url = `http://api.songkick.com/api/3.0/events.json?apikey=${apiKey}&location=geo:37.783607,-122.408967&min_date=${date}&max_date=${date}`;
@@ -24,10 +23,9 @@ router.post('/', (req, res) => {
             db.createEvent(event);
           })
         })
-        //how to wait for all create events? This isn't getting called
+        // async bug
         .then(() => {
           db.getEvents(date, (newEvents) => {
-            //console.log('2 ', newEvents[0]);
             res.send(newEvents);
           });
         })  
