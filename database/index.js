@@ -5,7 +5,8 @@ let password = credentials.loginData.password
 const Sequelize = require('sequelize');
 const seq = new Sequelize('greenfielddb', user, password, {
   host: 'localhost',
-  dialect: 'mysql'
+  dialect: 'mysql',
+  logging: false
 });
 
 const Events = seq.define('events', {
@@ -15,8 +16,8 @@ const Events = seq.define('events', {
   time: Sequelize.TIME,
   date: Sequelize.DATEONLY,
   venue: Sequelize.STRING,
-  latitude: Sequelize.INTEGER,
-  longitude: Sequelize.INTEGER
+  latitude: Sequelize.STRING,
+  longitude: Sequelize.STRING
 });
 
 Events.sync({force: true}).then(() => {
@@ -33,24 +34,24 @@ seq
   });
 
 let createEvent = (event) => {
-	Events.create({
-		//fill in attribues
-		displayName: Sequelize.STRING,
-	  headline: Sequelize.STRING,
-	  uri: Sequelize.STRING,
-	  time: Sequelize.TIME,
-	  date: Sequelize.DATEONLY,
-	  venue: Sequelize.STRING,
-	  latitude: Sequelize.INTEGER,
-	  longitude: Sequelize.INTEGER
+	return Events.create({
+		displayName: event.displayName,
+	  headline: event.performance[0].displayName,
+	  uri: event.uri,
+	  time: event.start.time,
+	  date: event.start.date,
+	  venue: event.venue.displayName,
+	  latitude: event.location.lat,
+	  longitude: event.location.lng
 	});
 } 
 
 let getEvents = (date) => {
-	Events.findAll({
+	return Events.findAll({
 		where: {
 			date: date
-		}
+		},
+		raw: true
 	})
 };
 

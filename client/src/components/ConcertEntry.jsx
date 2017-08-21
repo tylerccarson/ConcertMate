@@ -25,16 +25,16 @@ class ConcertEntry extends React.Component {
 
     return (
       <ListGroupItem
-        header={this.props.event.performance[0].displayName} 
-        onClick={() => this.handleClick(this.props.event.performance[0].displayName)}
-        onMouseEnter={() =>  this.mouseIn(this.props.event.venue.displayName)}
+        header={this.props.event.headline} 
+        onClick={() => this.handleClick(this.props.event.headline)}
+        onMouseEnter={() =>  this.mouseIn(this.props.event.venue)}
         onMouseLeave={() => this.mouseOut()}
         >
-        <span> {this.props.event.venue.displayName} on {this.props.event.start.date} {this.props.event.start.time}</span>
+        <span> {this.props.event.venue} on {this.props.event.date.slice(0, 10)} {this.props.event.time}</span>
         <span>
-            {this.props.event.performance[0].displayName}
+            {this.props.event.headline}
         </span>
-        <span> at {this.props.event.venue.displayName} on {this.props.event.start.date} {this.props.event.start.time}</span>
+        <span> at {this.props.event.venue} on {this.props.event.date} {this.props.event.time}</span>
         <a href={this.props.event.uri}> Buy Tickets</a>
       </ListGroupItem>
     )
