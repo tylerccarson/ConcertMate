@@ -17,12 +17,15 @@ class App extends React.Component {
       events: [],
       startDate: moment(),
       artist: '',
+      hoveredEvent: '',
       artistId: undefined,
-      token: undefined
+      token: undefined,
+
     };
 
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleArtistClick = this.handleArtistClick.bind(this);
+    this.handleHover = this.handleHover.bind(this);
   }
 
   componentWillMount() {
@@ -80,6 +83,18 @@ class App extends React.Component {
       console.log('new state: ', this.state.artist);
        this.requestArtistId();
     })
+  }
+
+  handleHover(hoveredEvent) {
+    if (hoveredEvent) {
+      this.setState({
+        hoveredEvent: hoveredEvent
+      });
+    } else {
+      this.setState({
+        hoveredEvent: ''
+      });
+    }
   }
 
   requestArtistId() {
@@ -148,12 +163,12 @@ class App extends React.Component {
         </Row>
         <Row>
           <Col md={6}>
-            <Map events={this.state.events}/>
+            <Map hovered={this.state.hoveredEvent} events={this.state.events}/>
           </Col>
           <Col md={6}>
             <Playlist artistId={this.state.artistId}/>
             <ReactScrollbar style={scrollbar}>
-              <Concerts events={this.state.events} handleArtistClick={this.handleArtistClick}/>
+              <Concerts handleHover={this.handleHover} events={this.state.events} handleArtistClick={this.handleArtistClick}/>
             </ReactScrollbar>
           </Col>
         </Row>

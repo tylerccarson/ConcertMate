@@ -7,7 +7,7 @@ const Concerts = (props) => {
 	return (
     <ListGroup>
     	{props.events.map((event, i) => {
-    		return <ConcertEntry event={event} key={i} handleArtistClick={props.handleArtistClick}/>
+    		return <ConcertEntry handleHover={props.handleHover} event={event} key={i} handleArtistClick={props.handleArtistClick}/>
     	})}
     </ListGroup>
   )

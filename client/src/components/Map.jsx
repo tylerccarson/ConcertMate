@@ -20,7 +20,7 @@ class Map extends React.Component {
     super(props);
     this.state = {
       center: {lat: 37.783607, lng:-122.408967},
-      zoom: 16,
+      zoom: 13,
       markerLocs: []
     }
   }
@@ -36,7 +36,8 @@ class Map extends React.Component {
     let venues = events.map((event) => {
       return {
         lat: event.venue.lat,
-        lng: event.venue.lng
+        lng: event.venue.lng,
+        name: event.venue.displayName
       }
     });
     this.setState({
@@ -47,9 +48,8 @@ class Map extends React.Component {
   render() {
     let context = this;
     let markers = this.state.markerLocs.map((loc) => {
-      return <Markers lat={loc.lat} lng={loc.lng} />
+      return <Markers hovered={this.props.hovered} name={loc.name} lat={loc.lat} lng={loc.lng} />
     });
-    console.log('markers ', markers);
     return (
       <div style={style}>
         <GoogleMapReact

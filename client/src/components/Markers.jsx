@@ -7,23 +7,13 @@ export default class Markers extends React.Component {
     super(props);
     this.state = {
       lat: this.props.lat,
-      lng: this.props.lng
+      lng: this.props.lng,
+      name: this.props.name
     }
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   this.setState({
-  //     lat: this.nextProps.lat,
-  //     lng: this.nextProps.lng
-  //   });
-  // }
-
-  handleHover(event) {
-
-  }
-
   render() {
-    let style = this.props.$hover ? markerStyleHover : markerStyle;
+    let style = this.props.$hover || this.state.name === this.props.hovered ? markerStyleHover : markerStyle;
     return (
       <div style={style}></div>
     )
