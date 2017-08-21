@@ -124,16 +124,16 @@ class App extends React.Component {
       .then((data) => {
         console.log('data received', data.data)
         this.setState({
-          events: data.data
+          events: data.data,
+          artist: data.data[0].headline
         });
+        this.requestArtistId();
         console.log('state:', this.state.events);
       })
       .catch((err) => {
         console.log('Error: ', err);
       });
-
   }
-
 
  render() {
 
