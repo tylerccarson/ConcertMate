@@ -11,11 +11,14 @@ router.use(bodyParser.urlencoded({extended: true}));
 
 router.post('/', (req, res) => {
 	let date = req.body.date;
+  let lat = req.body.lat;
+  let lng = req.body.lng;
   db.getEvents(date, (dbEvents) => {
     if (dbEvents.length) {
         res.send(dbEvents);
     } else {
-    	let url = `http://api.songkick.com/api/3.0/events.json?apikey=${apiKey}&location=geo:37.783607,-122.408967&min_date=${date}&max_date=${date}`;
+      // here you could add functionality to setting a min/max date to search between
+    	let url = `http://api.songkick.com/api/3.0/events.json?apikey=${apiKey}&location=geo:${lat},${lng}&min_date=${date}&max_date=${date}`;
       axios.get(url)
         .then((events) => {
           let data = events.data.resultsPage.results.event;

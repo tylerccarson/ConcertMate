@@ -20,7 +20,8 @@ class App extends React.Component {
       artist: '',
       hoveredEvent: '',
       artistId: undefined,
-      token: undefined
+      token: undefined,
+      mapCenter: {lat: 37.783607, lng:-122.408967} 
     };
 
     this.handleDateChange = this.handleDateChange.bind(this);
@@ -111,11 +112,15 @@ class App extends React.Component {
 
   requestSongkickEvents(date) {
     let formattedDate = this.state.startDate.format('YYYY-MM-DD');
+    let latitude = this.state.mapCenter.lat;
+    let longitude = this.state.mapCenter.lng;
     if (date) {
       formattedDate = date.format('YYYY-MM-DD')
     }
     axios.post('/songkick/', {
-      date: formattedDate
+      date: formattedDate,
+      lat: latitude,
+      lng: longitude
     })
       .then((data) => {
         console.log('data received', data.data)
