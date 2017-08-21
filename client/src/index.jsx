@@ -120,9 +120,9 @@ class App extends React.Component {
       date: formattedDate
     })
       .then((data) => {
-        console.log('data received', data.data.event)
+        console.log('data received', data.data)
         this.setState({
-          events: data.data.event
+          events: data.data
         });
         console.log('state:', this.state.events);
       })
