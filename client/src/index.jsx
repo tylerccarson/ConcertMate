@@ -10,6 +10,7 @@ import Concerts from './components/Concerts.jsx';
 import ReactScrollbar from 'react-scrollbar-js';
 import {PageHeader} from 'react-bootstrap';
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +21,7 @@ class App extends React.Component {
       hoveredEvent: '',
       artistId: undefined,
       token: undefined,
-      mapCenter: {lat: 37.783607, lng:-122.408967} 
+      mapCenter: {lat: 37.783607, lng:-122.408967}
     };
 
     this.handleDateChange = this.handleDateChange.bind(this);
@@ -33,7 +34,6 @@ class App extends React.Component {
     this.requestSongkickEvents();
   }
 
-  // get the hash fragment from the URL if you've already logged in, otherwise redirect to the login page
   authenticateSpotify() {
     if (window.location.hash) {
       let hash = window.location.hash;
@@ -75,8 +75,6 @@ class App extends React.Component {
     })
   }
 
-  // passed down to the ConcertEntry component as a callback, change state based on whether or not
-  // the mouse is currently hovering the event
   handleHover(hoveredEvent) {
     if (hoveredEvent) {
       this.setState({
@@ -111,7 +109,7 @@ class App extends React.Component {
     }
   }
 
-  // 
+
   requestSongkickEvents(date) {
     let formattedDate = this.state.startDate.format('YYYY-MM-DD');
     let latitude = this.state.mapCenter.lat;
@@ -125,11 +123,13 @@ class App extends React.Component {
       lng: longitude
     })
       .then((data) => {
+        console.log('data received', data.data)
         this.setState({
           events: data.data,
           artist: data.data[0].headline
         });
         this.requestArtistId();
+        console.log('state:', this.state.events);
       })
       .catch((err) => {
         console.log('Error: ', err);
@@ -140,7 +140,13 @@ class App extends React.Component {
 
     const scrollbar = {
       width: 555,
-      height: 420,
+      height: 290,
+    };
+
+    const header = {
+      fontFamily: 'futura',
+      fontSize: 70,
+      color: '#CD3F2A'
     };
 
     return (
@@ -149,7 +155,7 @@ class App extends React.Component {
         <Row>
           <Col md={12}>
           <div>
-            <PageHeader>ConcertMate <small>discover upcoming concerts around you</small></PageHeader>
+            <PageHeader style={header}>ConcertMate <small>discover upcoming concerts around you</small></PageHeader>
           </div>
           </Col>
         </Row>

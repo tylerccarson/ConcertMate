@@ -1,6 +1,6 @@
 let loginData = {
   user: 'root',
-  password: 'MPCTE3TYFC'
+  password: ''
 }
 
 module.exports.loginData = loginData;

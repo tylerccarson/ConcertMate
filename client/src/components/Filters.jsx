@@ -6,14 +6,14 @@ import axios from 'axios';
 
 // ignore the fact that this is called Favorites but the file is called Filters
 class Favorites extends React.Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			startDate: moment(),
+  constructor(props) {
+    super(props)
+    this.state = {
+      startDate: moment(),
       radius: 5,
       search: ''
-		}
-	}
+    }
+  }
 
   handleSearch(text) {
     this.setState({
@@ -38,30 +38,36 @@ class Favorites extends React.Component {
       })
   }
 
-	render() {
+  render() {
+
+    const datepicker =  {
+      paddingTop: '3.5px'
+
+
+    }
 
     return (
-    	<div>
-        <div>
-          Pick a day:
-          <DatePicker
-            dateFormat="MM/DD/YYYY"
-            selected={this.props.startDate}
-            onChange={this.props.handleDateChange}
-          />
-        </div>
-          <Navbar>
-            <Navbar.Form pullLeft>
-              <FormGroup>
-                <FormControl type="text" placeholder="Location..." onChange={this.handleSearch.bind(this)}/>
-              </FormGroup>
-              {' '}
-              <Button type="submit" onClick={this.handleSubmit.bind(this)}>Submit</Button>
-            </Navbar.Form>
-          </Navbar>
-        </div>
-    )		
-	}
+      <div>
+        <Navbar bsStyle="info">
+          <Navbar.Form pullLeft>
+            <FormGroup>
+              <FormControl type="text" placeholder="Location..." onChange={this.handleSearch.bind(this)}/>
+            </FormGroup>
+            {' '}
+            <Button type="submit" onClick={this.handleSubmit.bind(this)}>Submit</Button>
+          </Navbar.Form>
+          <Navbar.Form>
+          <div style={datepicker}>
+        <DatePicker
+          dateFormat="MM/DD/YYYY"
+          selected={this.props.startDate}
+          onChange={this.props.handleDateChange}
+        /> </div>
+        </Navbar.Form>
+        </Navbar>
+      </div>
+    )
+  }
 };
 
 export default Favorites;
