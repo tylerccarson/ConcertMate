@@ -1,13 +1,28 @@
-const credentials = require('./config.js');
-let user = credentials.loginData.user;
-let password = credentials.loginData.password
-
 const Sequelize = require('sequelize');
-const seq = new Sequelize('greenfielddb', user, password, {
-  host: 'localhost',
-  dialect: 'mysql',
-  logging: false
-});
+let seq;
+
+if (process.env.NODE_ENV === 'production') {
+	let user = 'lvvcibvedjuksl';
+	let password = 'c483158557256880ec572522f4dd15ff618909912c2c87aa1c832414a9f75a55';
+  let port = 5432;
+  let host = 'ec2-174-129-239-0.compute-1.amazonaws.com';
+  let db = 'd87km75hurson7';
+  let dialect = 'postgres';
+
+  seq = new Sequelize(process.env.DATABASE_URL);
+
+} else {
+	let credentials = require('./config.js');
+	let user = credentials.loginData.user;
+	let password = credentials.loginData.password;
+
+	seq = new Sequelize('greenfielddb', user, password, {
+	  host: 'localhost',
+	  dialect: 'mysql',
+	  logging: false
+	});
+		
+}
 
 const Events = seq.define('events', {
   displayName: Sequelize.STRING,

@@ -19,6 +19,8 @@
     "mysql": "^2.14.1",
     "mysql2": "^1.4.0",
     "nodemon": "^1.11.0",
+    "pg": "^7.3.0",
+    "pg-hstore": "^2.3.2",
     "querystring": "^0.2.0",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.2",
