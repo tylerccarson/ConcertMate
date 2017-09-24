@@ -9,7 +9,11 @@ if (process.env.NODE_ENV === 'production') {
   let db = 'd87km75hurson7';
   let dialect = 'postgres';
 
-  seq = new Sequelize(process.env.DATABASE_URL);
+  seq = new Sequelize(db, user, password, {
+  	host: host,
+  	dialect: dialect,
+  	port: port
+  });
 
 } else {
 	let credentials = require('./config.js');
