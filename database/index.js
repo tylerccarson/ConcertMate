@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 let seq;
 
 if (process.env.NODE_ENV === 'production') {
+	/* for postgres DB
 	let user = 'lvvcibvedjuksl';
 	let password = 'c483158557256880ec572522f4dd15ff618909912c2c87aa1c832414a9f75a55';
   let port = 5432;
@@ -14,6 +15,9 @@ if (process.env.NODE_ENV === 'production') {
   	dialect: dialect,
   	port: port
   });
+  */
+  // for mysql clearDB
+  seq = new Sequelize(process.env.CLEARDB_DATABASE_URL);
 
 } else {
 	let credentials = require('./config.js');
