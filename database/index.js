@@ -2,21 +2,6 @@ const Sequelize = require('sequelize');
 let seq;
 
 if (process.env.NODE_ENV === 'production') {
-	/* for postgres DB
-	let user = 'lvvcibvedjuksl';
-	let password = 'c483158557256880ec572522f4dd15ff618909912c2c87aa1c832414a9f75a55';
-  let port = 5432;
-  let host = 'ec2-174-129-239-0.compute-1.amazonaws.com';
-  let db = 'd87km75hurson7';
-  let dialect = 'postgres';
-
-  seq = new Sequelize(db, user, password, {
-  	host: host,
-  	dialect: dialect,
-  	port: port
-  });
-  */
-  // for mysql clearDB
   seq = new Sequelize(process.env.CLEARDB_DATABASE_URL);
 
 } else {
