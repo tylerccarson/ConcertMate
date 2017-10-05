@@ -59,6 +59,8 @@ class Map extends React.Component {
           <GoogleMapReact
             defaultCenter={this.state.center}
             defaultZoom={this.state.zoom}
+            //tyler's API key
+            bootstrapURLKeys={{ key: 'AIzaSyAKz2CFbt5g3Bk62oqCwWfpHqgW0hIVynk' }}
           >
             {markers}
           </GoogleMapReact>
