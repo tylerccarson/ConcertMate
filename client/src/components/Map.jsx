@@ -51,16 +51,25 @@ class Map extends React.Component {
     let markers = this.state.markerLocs.map((loc) => {
       return <Markers hovered={this.props.hovered} name={loc.name} lat={loc.lat} lng={loc.lng} />
     });
-    return (
-      <div style={style}>
-        <GoogleMapReact
-          defaultCenter={this.state.center}
-          defaultZoom={this.state.zoom}
-        >
-          {markers}
-        </GoogleMapReact>
-      </div>
-    )
+
+    // only show map if authenticated
+    if (window.location.hash) {
+      return (
+        <div style={style}>
+          <GoogleMapReact
+            defaultCenter={this.state.center}
+            defaultZoom={this.state.zoom}
+          >
+            {markers}
+          </GoogleMapReact>
+        </div>
+      )
+    } else {
+      return (
+        <div>Loading map...</div>
+      )
+    }
+
   }
 }
 

@@ -70,7 +70,7 @@ class App extends React.Component {
     this.setState({
       artist: clickedArtist
     }, () => {
-      console.log('new state: ', this.state.artist);
+      //console.log('new state: ', this.state.artist);
        this.requestArtistId();
     })
   }
@@ -123,13 +123,13 @@ class App extends React.Component {
       lng: longitude
     })
       .then((data) => {
-        console.log('data received', data.data)
+        //console.log('data received', data.data)
         this.setState({
           events: data.data,
           artist: data.data[0].headline
         });
         this.requestArtistId();
-        console.log('state:', this.state.events);
+        //console.log('state:', this.state.events);
       })
       .catch((err) => {
         console.log('Error: ', err);
