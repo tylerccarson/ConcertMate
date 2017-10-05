@@ -4,10 +4,22 @@ let bodyParser = require('body-parser');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));
 
+let domain;
+let redirect_uri;
+
+if (process.env.NODE_ENV === 'production') {
+  domain = 'https://concertmate.herokuapp.com';
+  redirect_uri = 'https://concertmate.herokuapp.com/spotify/callback/';
+} else {
+	console.log('in development');
+	domain = 'http://localhost:1337';
+	redirect_uri = 'http://localhost:1337/spotify/callback/';
+}
+
 let spotifyCredentials = {
 	client_id: '1b4dd6acf0c14120b5fa6ae37b4c773a',
 	client_secret: '365aec3923fe452fbbeb31fe842c2a4c',
-	redirect_uri: 'http://localhost:1337/spotify/callback/'
+	redirect_uri: redirect_uri
 };
 
 let token = undefined;
@@ -30,7 +42,7 @@ router.get('/login', (req, res) => {
 
 //callback route
 router.get('/callback', (req, res) => {
-	res.redirect('http://localhost:1337');
+	res.redirect(domain);
 });
 
 //save token
