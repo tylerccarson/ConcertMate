@@ -18,7 +18,11 @@ var DIST_DIR = path.join(__dirname, 'client/dist');
                  query: {
                      presets: ['es2015', 'react']
                  }
-             }
+             },
+             {
+               test: /\.(png|jpg)$/,
+               loader: 'url-loader'
+            }
          ],
      },
      devtool: 'source-map'

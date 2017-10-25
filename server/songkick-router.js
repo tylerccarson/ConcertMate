@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
 let axios = require('axios');
-let apiKey = 'qRDqWCS0qJpDH4Qp';
+let apiKey = process.env.SONGKICK_API_KEY || require('../database/config.js').songkick.api;
 let bodyParser = require('body-parser');
 let db = require('../database/index.js');
 
@@ -13,8 +13,13 @@ router.post('/', (req, res) => {
   let lat = req.body.lat;
   let lng = req.body.lng;
   let city = req.body.city;
+  let params = {
+    date: date,
+    city: city,
+  };
 
-  db.getEvents(date, (dbEvents) => {
+  //need to add city to the DB fetch as well
+  db.getEvents(params, (dbEvents) => {
     if (dbEvents.length) {
         res.send(dbEvents);
     } else {
@@ -41,6 +46,7 @@ router.post('/', (req, res) => {
             searchCity: searchCity
           }))
         })
+        //whoops... not putting new events into the DB? Wait until the search API works until I start persisting
         .then(events => {
           res.send(events);
         })

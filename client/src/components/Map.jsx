@@ -4,6 +4,15 @@ import GoogleMapReact from 'google-map-react';
 import GoogleMapMarkers from 'google-map-react';
 import Markers from './Markers.jsx';
 
+let googleAPIKEY;
+
+if (process.env.NODE_ENV === 'production') {
+  googleAPIkey = process.env.GOOGLE_API_KEY;
+} else {
+  import google from '../database/config.js';
+  googleAPIkey = google.key;
+}
+
 const style = {
   position: 'fixed',
   overflow: 'visible',
@@ -24,12 +33,6 @@ class Map extends React.Component {
       zoom: 13,
       markerLocs: []
     }
-  }
-
-  handleClick(event) {
-    // should there even be a handleClick for the map itself?
-    // or should there just be a hover event for markers?
-    // or should clicking on the marker highlight all concerts at that venue?
   }
 
   componentWillReceiveProps(nextProps) {
@@ -60,7 +63,7 @@ class Map extends React.Component {
             defaultCenter={this.state.center}
             defaultZoom={this.state.zoom}
             //tyler's API key
-            bootstrapURLKeys={{ key: 'AIzaSyAKz2CFbt5g3Bk62oqCwWfpHqgW0hIVynk' }}
+            bootstrapURLKeys={{ key: googleAPIkey }}
           >
             {markers}
           </GoogleMapReact>

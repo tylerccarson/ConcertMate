@@ -9,6 +9,7 @@ import Playlist from './components/Playlist.jsx';
 import Concerts from './components/Concerts.jsx';
 import ReactScrollbar from 'react-scrollbar-js';
 import {PageHeader} from 'react-bootstrap';
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 
 class App extends React.Component {
@@ -28,6 +29,7 @@ class App extends React.Component {
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleArtistClick = this.handleArtistClick.bind(this);
     this.handleHover = this.handleHover.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   componentWillMount() {
@@ -58,6 +60,27 @@ class App extends React.Component {
           console.log(error);
         });
     }
+  }
+
+  handleSearch(loc) {
+    geocodeByAddress(loc)
+      .then(results => getLatLng(results[0]))
+      .then(latLng => {
+
+        let userLoc = {
+          lat: latLng.lat,
+          lng: latLng.lng
+        };
+        //set state of mapCenter prop
+        this.setState({
+          mapCenter: userLoc
+        }, () => {
+          //getSongkickEvents
+          this.requestSongkickEvents();
+        });
+
+      })
+      .catch(error => console.log('error', error))
   }
 
   handleDateChange(date) {
@@ -115,6 +138,8 @@ class App extends React.Component {
     let formattedDate = this.state.startDate.format('YYYY-MM-DD');
     let latitude = this.state.mapCenter.lat;
     let longitude = this.state.mapCenter.lng;
+    let city = this.state.city;
+
     if (date) {
       formattedDate = date.format('YYYY-MM-DD')
     }
@@ -122,14 +147,13 @@ class App extends React.Component {
       date: formattedDate,
       lat: latitude,
       lng: longitude,
-      city: this.state.city
+      city: city
     })
       .then((data) => {
         //console.log('data received', data.data)
         this.setState({
           events: data.data,
-          artist: data.data[0].headline,
-          city: null //something will go here
+          artist: data.data[0].headline
         });
         this.requestArtistId();
         //console.log('state:', this.state.events);
@@ -164,7 +188,7 @@ class App extends React.Component {
         </Row>
         <Row>
           <Col md={12}>
-            <Filters handleDateChange={this.handleDateChange} startDate={this.state.startDate} city={this.state.city} />
+            <Filters handleDateChange={this.handleDateChange} startDate={this.state.startDate} handleSearch={this.handleSearch} />
           </Col>
         </Row>
         <Row>

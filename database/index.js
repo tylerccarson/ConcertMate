@@ -25,17 +25,18 @@ const Events = seq.define('events', {
   date: Sequelize.STRING,
   venue: Sequelize.STRING,
   latitude: Sequelize.STRING,
-  longitude: Sequelize.STRING
+  longitude: Sequelize.STRING,
+  city: Sequelize.STRING
 });
 
 Events.sync({force: false}).then(() => {
-	console.log('Created "events" table');
+	console.log('Synced to events table');
 });
 
 seq
   .authenticate()
   .then(() => {
-    console.log('connection granted');
+    console.log('Connection Granted');
   })
   .catch(err => {
     console.log('error connecting to DB ', err);
@@ -50,14 +51,16 @@ let createEvent = (event) => {
 	  date: event.start.date,
 	  venue: event.venue.displayName,
 	  latitude: event.location.lat,
-	  longitude: event.location.lng
+	  longitude: event.location.lng,
+	  city: event.city
 	});
 } 
 
-let getEvents = (date, callback) => {
+let getEvents = (params, callback) => {
 	return Events.findAll({
 		where: {
-			date: date
+			date: params.date,
+			city: params.city
 		},
 		raw: true
 	})
