@@ -4,13 +4,13 @@ import GoogleMapReact from 'google-map-react';
 import GoogleMapMarkers from 'google-map-react';
 import Markers from './Markers.jsx';
 
-let googleAPIKEY;
+let googleAPIkey;
 
 if (process.env.NODE_ENV === 'production') {
   googleAPIkey = process.env.GOOGLE_API_KEY;
 } else {
-  import google from '../database/config.js';
-  googleAPIkey = google.key;
+  let config = require('../../../database/config.js');
+  googleAPIkey = config.google.key;
 }
 
 const style = {
@@ -55,14 +55,14 @@ class Map extends React.Component {
       return <Markers hovered={this.props.hovered} name={loc.name} lat={loc.lat} lng={loc.lng} />
     });
 
-    // only show map if authenticated
+    // only show map if authenticated, to change once Passport introduced for authentication, maybe switch to checking for events instead
     if (window.location.hash) {
       return (
         <div style={style}>
           <GoogleMapReact
-            defaultCenter={this.state.center}
+            defaultCenter={{lat: 37.783607, lng:-122.408967}}
+            center={this.props.mapCenter}
             defaultZoom={this.state.zoom}
-            //tyler's API key
             bootstrapURLKeys={{ key: googleAPIkey }}
           >
             {markers}

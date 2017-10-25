@@ -13,29 +13,13 @@ class Favorites extends React.Component {
       radius: 5,
       search: ''
     }
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   handleSearch(text) {
     this.setState({
       search: text.target.value
     });
-  }
-
-  // beginning of search functionality. we wanted to implement google search to be able to
-  // autocomplete addresses but hey that's your job now
-  handleSubmit() {
-    let context = this;
-    axios.post('/google/search', {
-        loc: this.state.search
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .then((res) => {
-        context.setState({
-          search: ''
-        });
-      })
   }
 
   render() {
@@ -51,10 +35,10 @@ class Favorites extends React.Component {
         <Navbar bsStyle="info">
           <Navbar.Form pullLeft>
             <FormGroup>
-              <FormControl type="text" placeholder="Location..." onChange={this.handleSearch.bind(this)}/>
+              <FormControl type="text" placeholder="Location..." onChange={this.handleSearch}/>
             </FormGroup>
             {' '}
-            <Button type="submit" onClick={this.handleSubmit.bind(this)}>Submit</Button>
+            <Button type="submit" onClick={ () => {this.props.handleSubmit(this.state.search)}}>Submit</Button>
           </Navbar.Form>
           <Navbar.Form>
           <div style={datepicker}>

@@ -29,7 +29,7 @@ class App extends React.Component {
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleArtistClick = this.handleArtistClick.bind(this);
     this.handleHover = this.handleHover.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillMount() {
@@ -62,7 +62,8 @@ class App extends React.Component {
     }
   }
 
-  handleSearch(loc) {
+  //need to change name, figure out how to attach to submit in the filters component
+  handleSubmit(loc) {
     geocodeByAddress(loc)
       .then(results => getLatLng(results[0]))
       .then(latLng => {
@@ -117,6 +118,8 @@ class App extends React.Component {
           artist: this.state.artist,
           token: this.state.token
         };
+        //do this recursively, or a while loop, until NOT undefined to solve the case where first artist isn't on Spotify
+        //issue I see with this though is asyncronousity
         axios.post('/spotify/search', data)
           .then((res) => {
             this.setState({
@@ -188,7 +191,7 @@ class App extends React.Component {
         </Row>
         <Row>
           <Col md={12}>
-            <Filters handleDateChange={this.handleDateChange} startDate={this.state.startDate} handleSearch={this.handleSearch} />
+            <Filters handleDateChange={this.handleDateChange} startDate={this.state.startDate} handleSubmit={this.handleSubmit} />
           </Col>
         </Row>
         <Row>

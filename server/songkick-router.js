@@ -1,9 +1,17 @@
 let express = require('express');
 let router = express.Router();
 let axios = require('axios');
-let apiKey = process.env.SONGKICK_API_KEY || require('../database/config.js').songkick.api;
 let bodyParser = require('body-parser');
 let db = require('../database/index.js');
+
+let apiKey;
+
+if (process.env.NODE_ENV === 'production') {
+  apiKey = process.env.SONGKICK_API_KEY;
+} else {
+  let config = require('../database/config.js');
+  apiKey = config.songkick.key;
+}
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));
@@ -13,9 +21,11 @@ router.post('/', (req, res) => {
   let lat = req.body.lat;
   let lng = req.body.lng;
   let city = req.body.city;
+
   let params = {
     date: date,
-    city: city,
+    lat: lat,
+    lng: lng
   };
 
   //need to add city to the DB fetch as well
