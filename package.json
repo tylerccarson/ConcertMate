@@ -4,7 +4,6 @@
   "description": "Find concerts near user and generate a 'preview' playlist.",
   "main": "index.js",
   "dependencies": {
-    "async": "^2.5.0",
     "axios": "^0.16.2",
     "babel-preset-es2015": "6.24.1",
     "babel-preset-react": "6.24.1",
@@ -19,8 +18,6 @@
     "mysql": "^2.14.1",
     "mysql2": "^1.4.0",
     "nodemon": "^1.11.0",
-    "pg": "^7.3.0",
-    "pg-hstore": "^2.3.2",
     "querystring": "^0.2.0",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.2",
@@ -30,7 +27,6 @@
     "react-scrollbar-js": "^1.0.1",
     "request": "^2.81.0",
     "sequelize": "^3.21.0",
-    "spotify-web-api-node": "^2.4.0",
     "webpack": "^3.4.1"
   },
   "devDependencies": {

@@ -21,7 +21,8 @@ class App extends React.Component {
       hoveredEvent: '',
       artistId: undefined,
       token: undefined,
-      mapCenter: {lat: 37.783607, lng:-122.408967}
+      mapCenter: {lat: 37.783607, lng:-122.408967},
+      city: ''
     };
 
     this.handleDateChange = this.handleDateChange.bind(this);
@@ -120,13 +121,15 @@ class App extends React.Component {
     axios.post('/songkick/', {
       date: formattedDate,
       lat: latitude,
-      lng: longitude
+      lng: longitude,
+      city: this.state.city
     })
       .then((data) => {
         //console.log('data received', data.data)
         this.setState({
           events: data.data,
-          artist: data.data[0].headline
+          artist: data.data[0].headline,
+          city: null //something will go here
         });
         this.requestArtistId();
         //console.log('state:', this.state.events);
@@ -161,7 +164,7 @@ class App extends React.Component {
         </Row>
         <Row>
           <Col md={12}>
-            <Filters handleDateChange={this.handleDateChange} startDate={this.state.startDate}/>
+            <Filters handleDateChange={this.handleDateChange} startDate={this.state.startDate} city={this.state.city} />
           </Col>
         </Row>
         <Row>

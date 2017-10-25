@@ -3,7 +3,6 @@ let router = express.Router();
 let axios = require('axios');
 let bodyParser = require('body-parser');
 let db = require('../database/index.js');
-let async = require('async');
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended: true}));
