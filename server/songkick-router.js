@@ -28,7 +28,6 @@ router.post('/', (req, res) => {
     lng: lng
   };
 
-  //need to add city to the DB fetch as well
   db.getEvents(params, (dbEvents) => {
     if (dbEvents.length) {
         res.send(dbEvents);
@@ -56,9 +55,9 @@ router.post('/', (req, res) => {
             searchCity: searchCity
           }))
         })
-        //whoops... not putting new events into the DB? Wait until the search API works until I start persisting
         .then(events => {
           res.send(events);
+          db.createEvents(events);
         })
         .catch((err) => {
           console.log('ERROR ', err);

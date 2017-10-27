@@ -75,7 +75,6 @@ router.post('/search', bodyParser.json(), (req, res) => {
 		res.send(artistData);
 	})
 	.catch((error) => {
-		console.log(error);
 		res.status(404).send('Error');
 	});
 

@@ -28,7 +28,7 @@
     "react-scrollbar": "^0.5.1",
     "react-scrollbar-js": "^1.0.1",
     "request": "^2.81.0",
-    "sequelize": "^3.21.0",
+    "sequelize": "^4.13.5",
     "url-loader": "^0.6.2",
     "webpack": "^3.4.1"
   },

@@ -17,6 +17,8 @@ if (process.env.NODE_ENV === 'production') {
 		
 }
 
+const Op = Sequelize.Op
+
 const Events = seq.define('events', {
   displayName: Sequelize.STRING,
   headline: Sequelize.STRING,
@@ -41,23 +43,38 @@ seq
     console.log('error connecting to DB ', err);
   });
 
-let createEvent = (event) => {
-	return Events.create({
-		displayName: event.displayName,
-	  headline: event.performance[0].displayName,
-	  uri: event.uri,
-	  time: event.start.time,
-	  date: event.start.date,
-	  venue: event.venue.displayName,
-	  latitude: event.location.lat,
-	  longitude: event.location.lng
-	});
+let createEvents = (events) => {
+  events = events.map((event) => {
+  	return {
+			displayName: event.displayName,
+		  headline: event.headline,
+		  uri: event.uri,
+		  time: event.time,
+		  date: event.date,
+		  venue: event.venue,
+		  latitude: event.latitude,
+		  longitude: event.longitude
+  	}
+  })
+	return Events.bulkCreate(events);
 } 
 
 let getEvents = (params, callback) => {
+	//give range of 1 lng and lat in each direction (approximately 100 range total)
+  let latMax = params.lat + 1;
+  let latMin = params.lat - 1;
+  let lngMax = params.lng + 1;
+  let lngMin = params.lng - 1;
+
 	return Events.findAll({
 		where: {
-			date: params.date
+			date: params.date,
+			longitude: {
+        [Op.between]: [lngMin, lngMax]
+			},
+			latitude: {
+        [Op.between]: [latMin, latMax]
+			}
 		},
 		raw: true
 	})
@@ -69,5 +86,5 @@ let getEvents = (params, callback) => {
 	})
 };
 
-module.exports.createEvent = createEvent;
+module.exports.createEvents = createEvents;
 module.exports.getEvents = getEvents;
