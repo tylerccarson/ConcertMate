@@ -6,19 +6,25 @@ router.use(bodyParser.urlencoded({extended: true}));
 
 let domain;
 let redirect_uri;
+let secret;
+let id;
 
 if (process.env.NODE_ENV === 'production') {
   domain = 'https://concertmate.herokuapp.com';
   redirect_uri = 'https://concertmate.herokuapp.com/spotify/callback/';
+  secret = process.env.SPOTIFY_CLIENT_SECRET;
+  id = process.env.SPOTIFY_CLIENT_ID;
 } else {
-	console.log('in development');
 	domain = 'http://localhost:1337';
 	redirect_uri = 'http://localhost:1337/spotify/callback/';
+  let credentials = require('../database/config.js');
+  secret = credentials.spotify.secret;
+  id = credentials.spotify.id;
 }
 
 let spotifyCredentials = {
-	client_id: '1b4dd6acf0c14120b5fa6ae37b4c773a',
-	client_secret: '365aec3923fe452fbbeb31fe842c2a4c',
+	client_id: id,
+	client_secret: secret,
 	redirect_uri: redirect_uri
 };
 

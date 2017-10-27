@@ -11,6 +11,12 @@ let google = {
 	key: 'GOOGLE_API_KEY_HERE'
 }
 
+let spotify = {
+	secret: 'SPOTIFY_CLIENT_SECRET_HERE',
+	id: 'SPOTIFY_CLIENT_ID_HERE'
+}
+
 module.exports.loginData = loginData;
 module.exports.songkick = songkick;
 module.exports.google = google;
+module.exports.spotify = spotify;
